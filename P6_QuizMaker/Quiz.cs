@@ -8,5 +8,9 @@ namespace P6_QuizMaker
 {
     internal class Quiz
     {
+        public string Question;
+        public string Answers;
+        public string CorrectAnswer;
+
     }
 }
