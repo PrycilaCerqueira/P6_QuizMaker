@@ -25,9 +25,8 @@ namespace P6_QuizMaker
                     /_/ /_/  /_/ |___/_/\__,_/   \___\_\__,_/\___/____/\__/  
 
                 ");
-
             Console.WriteLine(gameDescription);
-            Console.WriteLine(); //skip a line
+            Console.WriteLine(); //skips a line
         }
 
         /// <summary>
@@ -39,7 +38,7 @@ namespace P6_QuizMaker
         {
             string inGameID;
 
-            Console.Write("Create you in-game ID: ");
+            Console.Write("Create your in-game ID: ");
             inGameID = Console.ReadLine().ToUpper().Trim();
 
             Console.WriteLine($"Welcome {inGameID}! Your initial score is {score}.");
