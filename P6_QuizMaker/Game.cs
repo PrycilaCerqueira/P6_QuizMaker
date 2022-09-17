@@ -8,6 +8,8 @@ namespace P6_QuizMaker
 {
     internal class Game
     {
-        public string Name;
+        public string Title;
+        public string Description;
+
     }
 }

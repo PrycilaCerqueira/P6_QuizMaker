@@ -6,7 +6,13 @@ namespace P6_QuizMaker // Note: actual namespace depends on the project name.
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Game trivia = new Game();
+            trivia.Title = "Tivia Quest";
+            trivia.Description = "It is a game of questions and answers. Win who collects the highest score to the end.";
+            UI.PrintGameInstructions(trivia.Title, trivia.Description);
+
+
+
         }
     }
 }

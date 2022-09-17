@@ -9,5 +9,6 @@ namespace P6_QuizMaker
     internal class Player
     {
         public string Name;
+        public int score = 0;
     }
 }
