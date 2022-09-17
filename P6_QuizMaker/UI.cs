@@ -15,7 +15,17 @@ namespace P6_QuizMaker
         /// <param name="gameDescription">Description of the game</param>
         public static void PrintGameInstructions(string gameTitle, string gameDescription)
         {
-            Console.WriteLine($"Welcome to {gameTitle}");
+            //Console.WriteLine($"Welcome to {gameTitle}");
+            Console.WriteLine
+                (@"
+                      ______     _       _          ____                  __ 
+                     /_  __/____(_)   __(_)___ _   / __ \__  _____  _____/ /_
+                      / / / ___/ / | / / / __ `/  / / / / / / / _ \/ ___/ __/
+                     / / / /  / /| |/ / / /_/ /  / /_/ / /_/ /  __(__  ) /_  
+                    /_/ /_/  /_/ |___/_/\__,_/   \___\_\__,_/\___/____/\__/  
+
+                ");
+
             Console.WriteLine(gameDescription);
             Console.WriteLine(); //skip a line
         }
