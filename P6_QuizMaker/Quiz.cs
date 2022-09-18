@@ -15,16 +15,5 @@ namespace P6_QuizMaker
         public string Answer4;
         public string CorrectAnswer;
 
-        public static void AddQuestAnswersToList()
-        {
-            List<string> quizList = new List<string>();
-            
-            quizList.Add(Question);
-            quizList.Add(Answer1);
-            quizList.Add(Answer2);
-            quizList.Add(Answer3);
-            quizList.Add(Answer4);
-            quizList.Add(CorrectAnswer);
-        } 
     }
 }

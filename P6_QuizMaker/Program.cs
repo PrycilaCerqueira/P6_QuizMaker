@@ -15,7 +15,16 @@ namespace P6_QuizMaker // Note: actual namespace depends on the project name.
             inGameID.Name = UI.PrintPlayerInfo(inGameID.score);
 
             Quiz HarryPotter = new Quiz();
-            
+
+            List<string> quizList = new List<string>();
+
+            quizList.Add(Quiz.Question);
+            quizList.Add(Quiz.Answer1);
+            quizList.Add(Quiz.Answer2);
+            quizList.Add(Quiz.Answer3);
+            quizList.Add(Quiz.Answer4);
+            quizList.Add(Quiz.CorrectAnswer);
+
 
         }
     }
