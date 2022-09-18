@@ -45,5 +45,14 @@ namespace P6_QuizMaker
 
             return inGameID;
         }
+
+        public static string QuestionInput()
+        {
+            string question;
+            Console.WriteLine(); //skips a line
+            Console.WriteLine("Enter your question: ");
+            question = Console.ReadLine().ToUpper().Trim();
+            return question;
+        }
     }
 }
