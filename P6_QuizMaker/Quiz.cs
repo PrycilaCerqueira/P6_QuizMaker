@@ -7,13 +7,14 @@ using System.Threading.Tasks;
 namespace P6_QuizMaker
 {
     internal class Quiz
-    {     
-        public string Question;
-        public string Answer1;
-        public string Answer2;
-        public string Answer3;
-        public string Answer4;
-        public string CorrectAnswer;
+    {
+        public string Topic { get; set; }
+        public string Question {get; set;}
+        public string Answer1 { get; set; }
+        public string Answer2 { get; set; }
+        public string Answer3 { get; set; }
+        public string Answer4 { get; set; }
+        public string CorrectAnswer { get; set; }
 
     }
 }
