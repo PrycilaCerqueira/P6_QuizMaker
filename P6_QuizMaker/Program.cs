@@ -14,24 +14,51 @@ namespace P6_QuizMaker // Note: actual namespace depends on the project name.
             Player inGameID = new Player();
             inGameID.Name = UI.PrintPlayerInfo(inGameID.score);
 
-            var quizBank = new List<Quiz>();
-            
             //TODO: Fix the increment of the list
-            int questionCount = 0;         
-            while (questionCount < 3)
+            var quizBank = new List<Quiz>()
             {
                 new Quiz()
                 {
-                        Topic = UI.TopicInput(),
-                        Question = UI.QuestionInput(),
-                        Answer1 = UI.AnswersInput(),
-                        Answer2 = UI.AnswersInput(),
-                        Answer3 = UI.AnswersInput(),
-                        Answer4 = UI.AnswersInput(),
-                        CorrectAnswer = UI.RightAnswerInput()
-                };
-                questionCount++;
-            }                
+                    Topic = UI.TopicInput(),
+                    Question = UI.QuestionInput(),
+                    Answer1 = UI.AnswersInput(),
+                    Answer2 = UI.AnswersInput(),
+                    Answer3 = UI.AnswersInput(),
+                    Answer4 = UI.AnswersInput(),
+                    CorrectAnswer = UI.RightAnswerInput()
+                },
+                new Quiz()
+                {
+                    Topic = UI.TopicInput(),
+                    Question = UI.QuestionInput(),
+                    Answer1 = UI.AnswersInput(),
+                    Answer2 = UI.AnswersInput(),
+                    Answer3 = UI.AnswersInput(),
+                    Answer4 = UI.AnswersInput(),
+                    CorrectAnswer = UI.RightAnswerInput()
+                },
+                new Quiz()
+                {
+                    Topic = UI.TopicInput(),
+                    Question = UI.QuestionInput(),
+                    Answer1 = UI.AnswersInput(),
+                    Answer2 = UI.AnswersInput(),
+                    Answer3 = UI.AnswersInput(),
+                    Answer4 = UI.AnswersInput(),
+                    CorrectAnswer = UI.RightAnswerInput()
+                },
+
+            };
+
+            foreach(var quizItem in quizBank)
+            {
+                Console.WriteLine();
+                Console.WriteLine(quizItem.Topic);
+
+            }
+
+
+         
 
         
 

@@ -16,5 +16,7 @@ namespace P6_QuizMaker
         public string Answer4 { get; set; }
         public string CorrectAnswer { get; set; }
 
+
+        
     }
 }
