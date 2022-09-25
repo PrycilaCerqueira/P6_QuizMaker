@@ -1,20 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Metadata.Ecma335;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace P6_QuizMaker
+﻿namespace P6_QuizMaker
 {
     internal class UI
     {
         /// <summary>
-        /// Prints the art game title and the game description on the console for the players
+        /// Prints the art game title 
         /// </summary>
-        /// <param name="gameTitle">Name of the game<param>
-        /// <param name="gameDescription">Description of the game</param>
-        public static void PrintGameInstructions(string gameTitle, string gameDescription)
+        /// <param name="gameTitle">Name of the game</param>
+        public static void PrintGameHeadline(string gameTitle)
         {
             //Console.WriteLine($"Welcome to {gameTitle}");
             Console.WriteLine
@@ -26,6 +18,16 @@ namespace P6_QuizMaker
                     /_/ /_/  /_/ |___/_/\__,_/   \___\_\__,_/\___/____/\__/  
 
                 ");
+
+        }
+        
+        
+        /// <summary>
+        /// Prints the game description on the console for the players
+        /// </summary>
+        /// <param name="gameDescription">Description of the game</param>
+        public static void PrintGameInstructions(string gameDescription)
+        {
             Console.WriteLine(gameDescription);
             Console.WriteLine(); //skips a line
         }
@@ -49,7 +51,12 @@ namespace P6_QuizMaker
 
 
 
-        //Quiz Input Block
+        //QUIZ INPUT BLOCK
+
+        /// <summary>
+        /// Allows the player to enter their question topic
+        /// </summary>
+        /// <returns>The topic</returns>
         public static string TopicInput()
         {
             string topic;
@@ -58,6 +65,11 @@ namespace P6_QuizMaker
             topic = InputVerification();
             return topic;
         }
+        
+        /// <summary>
+        /// Allows the player to enter their question
+        /// </summary>
+        /// <returns>The question</returns>
         public static string QuestionInput()
         {
             string question;
@@ -65,6 +77,11 @@ namespace P6_QuizMaker
             question = InputVerification();
             return question;
         }
+
+        /// <summary>
+        /// Allows the player to enter their answer for the question
+        /// </summary>
+        /// <returns>The answer</returns>
         public static string AnswersInput()
         {
             string answer;
@@ -72,6 +89,12 @@ namespace P6_QuizMaker
             answer = InputVerification();
             return answer;
         }
+
+
+        /// <summary>
+        /// Allows the player to enter their correct answer for the question
+        /// </summary>
+        /// <returns>The correct answer</returns>
         public static string RightAnswerInput()
         {
             string answer;
@@ -79,6 +102,11 @@ namespace P6_QuizMaker
             answer = InputVerification();
             return answer;
         }
+
+        /// <summary>
+        /// Verifies whether or not the input complies with the program minimum requirements 
+        /// </summary>
+        /// <returns>The compliant input string</returns>
         static string InputVerification()
         {
             string txtInput;
@@ -102,6 +130,25 @@ namespace P6_QuizMaker
                 break;
             }
             return txtInput;
+        }
+
+        /// <summary>
+        /// Confirms whether the player would like to continue the game or not
+        /// </summary>
+        public static void wantContinueGame()
+        {
+            string continueYesNo;
+            Console.WriteLine("\nWould you like to continue? (Y/N)");
+
+            if(Console.ReadKey().Key == ConsoleKey.Y)
+            {
+                Console.Clear();
+            }
+            else 
+            {
+                Environment.Exit(0);   
+            }
+         
         }
     }
 }

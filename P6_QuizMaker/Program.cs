@@ -8,13 +8,8 @@ namespace P6_QuizMaker // Note: actual namespace depends on the project name.
         {
             //Game Info
             Game trivia = new Game();
-            trivia.Title = "Tivia Quest";
-            trivia.Description = "It is a game of questions and answers. Win who collects the highest score to the end.\nIn this Trivia Quest version, you will initially create your bank of questions.";
-            UI.PrintGameInstructions(trivia.Title, trivia.Description);
-
-            //Player Info
-            Player inGameID = new Player();
-            inGameID.Name = UI.PrintPlayerInfo(inGameID.score);
+            UI.PrintGameHeadline(trivia.Title);
+            UI.PrintGameInstructions(trivia.Description);
 
             //Quiz DB Creation
             var quizBank = new List<Quiz>(); //The quizBank variable holds a list type Quiz
@@ -32,19 +27,19 @@ namespace P6_QuizMaker // Note: actual namespace depends on the project name.
                 quizBank.Add(quiz); //adds the the quiz instance data entered by the player to the quizBank variable
             }
 
-            
-            foreach (var quizItem in quizBank)
-            {
-                Console.WriteLine();
-                Console.WriteLine(quizItem.Topic);
+            UI.wantContinueGame();
+            UI.PrintGameHeadline(trivia.Title);
 
-            }
+            //Player Info
+            Player inGameID = new Player();
+            inGameID.Name = UI.PrintPlayerInfo(inGameID.score);
+            
 
 
          
 
         
-
+           
 
 
         }
