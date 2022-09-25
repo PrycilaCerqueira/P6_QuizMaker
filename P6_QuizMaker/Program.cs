@@ -11,28 +11,47 @@ namespace P6_QuizMaker // Note: actual namespace depends on the project name.
             UI.PrintGameHeadline(trivia.Title);
             UI.PrintGameInstructions(trivia.Description);
 
+            
             //Quiz DB Creation
-            var quizBank = new List<Quiz>(); //The quizBank variable holds a list type Quiz
+            var quizBank = new List<Quizzes>(); //The quizBank variable holds a list type Quiz
             for(int numOfQuestions = 0; numOfQuestions < 3; numOfQuestions++) //limits the number of questions that the player will input
             {
-                Quiz quiz = new Quiz(); //Created and initiated an instance of the my Quiz object to populated by the player 
-                quiz.Topic = UI.TopicInput();
-                quiz.Question = UI.QuestionInput();
-                quiz.Answer1 = UI.AnswersInput();
-                quiz.Answer2 = UI.AnswersInput();
-                quiz.Answer3 = UI.AnswersInput();
-                quiz.Answer4 = UI.AnswersInput();
-                quiz.CorrectAnswer = UI.RightAnswerInput();
+                Quizzes quiz = new Quizzes(); //Created and initiated an instance of the my Quiz object to populated by the player 
+                quiz.Topic = UI.GetPlayerInput("\nEnter the question topic: ");
+                quiz.Question = UI.GetPlayerInput("Enter the question: ");
+                quiz.Answer1 = UI.GetPlayerInput("Enter your answer 1: ");
+                quiz.Answer2 = UI.GetPlayerInput("Enter your answer 2: ");
+                quiz.Answer3 = UI.GetPlayerInput("Enter your answer 3: ");
+                quiz.Answer4 = UI.GetPlayerInput("Enter your answer 4: ");
+                quiz.CorrectAnswer = UI.GetPlayerInput("Enter right answer to your question: ");
 
                 quizBank.Add(quiz); //adds the the quiz instance data entered by the player to the quizBank variable
             }
 
+            //Game continuity confirmation
             UI.wantContinueGame();
             UI.PrintGameHeadline(trivia.Title);
+            
 
             //Player Info
-            Player inGameID = new Player();
-            inGameID.Name = UI.PrintPlayerInfo(inGameID.score);
+            int numOfPlayers = UI.HowManyPlayers();
+            var playersBank = new List<Players>();
+            for(int nPlayer = 0; nPlayer < numOfPlayers; nPlayer++)
+            {
+                Players player = new Players();
+                player.ID = UI.GetPlayerInput("\nCreate your in-game ID: ");
+                player.Name = UI.GetPlayerInput("Enter your full name: ");
+                player.Score = 0;
+
+                playersBank.Add(player);
+            }
+         
+
+
+            
+
+  
+  
             
 
 

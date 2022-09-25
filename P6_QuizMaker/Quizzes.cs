@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace P6_QuizMaker
 {
-    internal class Quiz
+    internal class Quizzes
     {
         public string Topic { get; set; }
         public string Question {get; set;}

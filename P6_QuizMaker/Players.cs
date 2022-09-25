@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace P6_QuizMaker
 {
-    internal class Player
+    internal class Players
     {
-        public string Name;
-        public int score = 0;
+        public string Name { get; set; }
+        public int Score { get; set; }
+        public string ID { get; set; }
     }
 }

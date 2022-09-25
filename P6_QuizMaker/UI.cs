@@ -32,96 +32,59 @@
             Console.WriteLine(); //skips a line
         }
 
-        /// <summary>
-        /// Prints the player chosen name and their initial score
-        /// </summary>
-        /// <param name="score">By default the initial score is zero</param>
-        /// <returns>The player chosen name</returns>
-        public static string PrintPlayerInfo(int score)
-        {
-            string inGameID;
-
-            Console.Write("Create your in-game ID: ");
-            inGameID = InputVerification();
-
-            Console.WriteLine($"Welcome {inGameID}! Your initial score is {score}.");
-
-            return inGameID;
-        }
-
-
-
-        //QUIZ INPUT BLOCK
 
         /// <summary>
-        /// Allows the player to enter their question topic
+        /// Gets the number of players
         /// </summary>
-        /// <returns>The topic</returns>
-        public static string TopicInput()
+        /// <returns>number of players</returns>
+        public static int HowManyPlayers()
         {
-            string topic;
-            Console.WriteLine(); //skips a line
-            Console.Write("Enter the question topic: ");
-            topic = InputVerification();
-            return topic;
+            string input;
+            int numOfPlayers;
+
+            Console.WriteLine("How many people are going to play this time?");
+            while (true)
+            {
+                input = Console.ReadLine().Trim();
+                if (String.IsNullOrWhiteSpace(input))
+                {
+                    Console.WriteLine("Empty or Spaces are invalid entries.");
+                    continue;
+                }
+                if (!int.TryParse(input, out numOfPlayers))
+                {
+                    Console.WriteLine("This field only accepts numbers.");
+                    continue;
+                }
+                if (numOfPlayers < 1)
+                {
+                    Console.WriteLine("It is required at least 1 player to continue the game.");
+                    continue;
+                }
+                break;
+            }
+            return numOfPlayers;
         }
         
         /// <summary>
-        /// Allows the player to enter their question
+        /// Allows the user to enter their inputs to the system
         /// </summary>
-        /// <returns>The question</returns>
-        public static string QuestionInput()
-        {
-            string question;
-            Console.Write("Enter your question: ");
-            question = InputVerification();
-            return question;
-        }
-
-        /// <summary>
-        /// Allows the player to enter their answer for the question
-        /// </summary>
-        /// <returns>The answer</returns>
-        public static string AnswersInput()
-        {
-            string answer;
-            Console.Write("Enter your answer: ");
-            answer = InputVerification();
-            return answer;
-        }
-
-
-        /// <summary>
-        /// Allows the player to enter their correct answer for the question
-        /// </summary>
-        /// <returns>The correct answer</returns>
-        public static string RightAnswerInput()
-        {
-            string answer;
-            Console.Write("Enter right answer to your question: ");
-            answer = InputVerification();
-            return answer;
-        }
-
-        /// <summary>
-        /// Verifies whether or not the input complies with the program minimum requirements 
-        /// </summary>
-        /// <returns>The compliant input string</returns>
-        static string InputVerification()
-        {
-            string txtInput;
-
+        /// <param name="requestHeadline">Question or Resquest</param>
+        /// <returns>The answers of the question or request</returns>
+        public static string GetPlayerInput(string requestHeadline)
+        {         
+            Console.Write(requestHeadline);
+            string playerInput;
             while (true)
             {
-                txtInput = Console.ReadLine().ToUpper().Trim();
-
-                if (String.IsNullOrWhiteSpace(txtInput))
+                playerInput = Console.ReadLine().ToUpper().Trim();
+                if (String.IsNullOrWhiteSpace(playerInput))
                 {
                     Console.WriteLine("Empty or Spaces are invalid entries.");
                     Console.Write("Try again: ");
                     continue;
                 }
-                if (txtInput.Length > 100)
+                if (playerInput.Length > 100)
                 {
                     Console.WriteLine("The text length cannot be longer than 100 characters.");
                     Console.Write("Try again: ");
@@ -129,8 +92,10 @@
                 }
                 break;
             }
-            return txtInput;
+            return playerInput;
+
         }
+        
 
         /// <summary>
         /// Confirms whether the player would like to continue the game or not
