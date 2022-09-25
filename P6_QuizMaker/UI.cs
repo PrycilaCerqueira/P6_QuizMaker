@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -39,7 +40,7 @@ namespace P6_QuizMaker
             string inGameID;
 
             Console.Write("Create your in-game ID: ");
-            inGameID = Console.ReadLine().ToUpper().Trim();
+            inGameID = InputVerification();
 
             Console.WriteLine($"Welcome {inGameID}! Your initial score is {score}.");
 
@@ -47,34 +48,60 @@ namespace P6_QuizMaker
         }
 
 
+
+        //Quiz Input Block
         public static string TopicInput()
         {
             string topic;
             Console.WriteLine(); //skips a line
             Console.Write("Enter the question topic: ");
-            topic = Console.ReadLine().ToUpper().Trim();
+            topic = InputVerification();
             return topic;
         }
         public static string QuestionInput()
         {
             string question;
             Console.Write("Enter your question: ");
-            question = Console.ReadLine().ToUpper().Trim();
+            question = InputVerification();
             return question;
         }
         public static string AnswersInput()
         {
             string answer;
             Console.Write("Enter your answer: ");
-            answer = Console.ReadLine().ToUpper().Trim();
+            answer = InputVerification();
             return answer;
         }
         public static string RightAnswerInput()
         {
             string answer;
             Console.Write("Enter right answer to your question: ");
-            answer = Console.ReadLine().ToUpper().Trim();
+            answer = InputVerification();
             return answer;
+        }
+        static string InputVerification()
+        {
+            string txtInput;
+
+            while (true)
+            {
+                txtInput = Console.ReadLine().ToUpper().Trim();
+
+                if (String.IsNullOrWhiteSpace(txtInput))
+                {
+                    Console.WriteLine("Empty or Spaces are invalid entries.");
+                    Console.Write("Try again: ");
+                    continue;
+                }
+                if (txtInput.Length > 100)
+                {
+                    Console.WriteLine("The text length cannot be longer than 100 characters.");
+                    Console.Write("Try again: ");
+                    continue;
+                }
+                break;
+            }
+            return txtInput;
         }
     }
 }
