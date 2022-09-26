@@ -102,9 +102,7 @@
         /// </summary>
         public static void wantContinueGame()
         {
-            string continueYesNo;
             Console.WriteLine("\nWould you like to continue? (Y/N)");
-
             if(Console.ReadKey().Key == ConsoleKey.Y)
             {
                 Console.Clear();

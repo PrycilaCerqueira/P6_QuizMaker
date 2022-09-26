@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace P6_QuizMaker // Note: actual namespace depends on the project name.
 {
@@ -32,7 +33,6 @@ namespace P6_QuizMaker // Note: actual namespace depends on the project name.
             UI.wantContinueGame();
             UI.PrintGameHeadline(trivia.Title);
             
-
             //Player Info
             int numOfPlayers = UI.HowManyPlayers();
             var playersBank = new List<Players>();
@@ -45,20 +45,34 @@ namespace P6_QuizMaker // Note: actual namespace depends on the project name.
 
                 playersBank.Add(player);
             }
-         
+
+            //Game continuity confirmation
+            UI.wantContinueGame();
+            UI.PrintGameHeadline(trivia.Title);
+
+
+            //TODO: Retreive the list of no duplicate topic
+            //https://learn.microsoft.com/en-us/dotnet/api/system.linq.enumerable.distinct?view=net-7.0
+
+            var noDuplicates = quizBank.Distinct();
+            foreach (var item in noDuplicates)
+            {
+                Console.WriteLine(item.Topic);
+            }
+            
+
+
 
 
             
 
-  
-  
-            
 
 
-         
 
-        
-           
+
+
+
+
 
 
         }
