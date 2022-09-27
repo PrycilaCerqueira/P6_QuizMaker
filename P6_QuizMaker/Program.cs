@@ -11,7 +11,6 @@ namespace P6_QuizMaker // Note: actual namespace depends on the project name.
             Game trivia = new Game();
             UI.PrintGameHeadline(trivia.Title);
             UI.PrintGameInstructions(trivia.Description);
-
             
             //Quiz DB Creation
             var quizBank = new List<Quizzes>(); //The quizBank variable holds a list type Quiz
@@ -54,11 +53,15 @@ namespace P6_QuizMaker // Note: actual namespace depends on the project name.
             //TODO: Retreive the list of no duplicate topic
             //https://learn.microsoft.com/en-us/dotnet/api/system.linq.enumerable.distinct?view=net-7.0
 
-            var noDuplicates = quizBank.Distinct();
-            foreach (var item in noDuplicates)
-            {
-                Console.WriteLine(item.Topic);
-            }
+
+            IEnumerable <string> topics = from item in quizBank
+                            where item.Topic != null
+                            select item.Topic;
+
+            IEnumerable<string> noDuplicates = topics.Distinct();
+            Console.WriteLine(noDuplicates);
+                
+
             
 
 
