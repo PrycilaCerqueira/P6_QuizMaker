@@ -96,7 +96,6 @@
 
         }
         
-
         /// <summary>
         /// Confirms whether the player would like to continue the game or not
         /// </summary>
@@ -112,6 +111,14 @@
                 Environment.Exit(0);   
             }
          
+        }
+
+        public static void PrintQuizElements (List<string> elements)
+        {   
+            foreach (var element in elements)
+            {
+                Console.WriteLine(element);
+            }
         }
     }
 }

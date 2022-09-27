@@ -54,12 +54,13 @@ namespace P6_QuizMaker // Note: actual namespace depends on the project name.
             //https://learn.microsoft.com/en-us/dotnet/api/system.linq.enumerable.distinct?view=net-7.0
 
 
-            IEnumerable <string> topics = from item in quizBank
+            var topics = from item in quizBank
                             where item.Topic != null
                             select item.Topic;
 
-            IEnumerable<string> noDuplicates = topics.Distinct();
-            Console.WriteLine(noDuplicates);
+            var noDuplicates = topics.Distinct().ToList();
+            UI.PrintQuizElements(noDuplicates);
+
                 
 
             
