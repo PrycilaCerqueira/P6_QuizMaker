@@ -132,7 +132,8 @@ namespace P6_QuizMaker
             string selectedTopic;
             while (true)
             {
-                selectedTopic = GetPlayerInput("\nWhich topic would you like to pick? ");
+                Console.WriteLine("\nWhich topic would you like to pick? ");
+                selectedTopic = Console.ReadLine().Trim().ToUpper();
 
                 if (!topics.Contains(selectedTopic))
                 {
