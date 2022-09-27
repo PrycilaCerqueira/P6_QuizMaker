@@ -1,4 +1,6 @@
-﻿namespace P6_QuizMaker
+﻿using System.Runtime.CompilerServices;
+
+namespace P6_QuizMaker
 {
     internal class UI
     {
@@ -113,12 +115,27 @@
          
         }
 
-        public static void PrintQuizElements (List<string> elements)
-        {   
-            foreach (var element in elements)
+        public static string SelectATopic (List<string> topics)
+        {
+            Console.WriteLine("Here are the topics of your questions: ");
+            foreach (var topic in topics)
             {
-                Console.WriteLine(element);
+                Console.WriteLine($"\u25BA {topic}");
             }
+            
+            string selectedTopic;
+            while (true)
+            {
+                selectedTopic = GetPlayerInput("Which topic would you like to pick?");
+
+                if (!topics.Contains(selectedTopic))
+                {
+                    Console.WriteLine("\nYour choice isn't listed above. Try again!");
+                    continue;
+                }
+                break;
+            }
+            return selectedTopic;
         }
     }
 }

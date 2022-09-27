@@ -49,17 +49,12 @@ namespace P6_QuizMaker // Note: actual namespace depends on the project name.
             UI.wantContinueGame();
             UI.PrintGameHeadline(trivia.Title);
 
-
-            //TODO: Retreive the list of no duplicate topic
-            //https://learn.microsoft.com/en-us/dotnet/api/system.linq.enumerable.distinct?view=net-7.0
-
-
+            //Preset the topics of the questions to the players https://learn.microsoft.com/en-us/dotnet/api/system.linq.enumerable.distinct?view=net-7.0
             var topics = from item in quizBank
                             where item.Topic != null
-                            select item.Topic;
-
-            var noDuplicates = topics.Distinct().ToList();
-            UI.PrintQuizElements(noDuplicates);
+                            select item.Topic; //collects all the topics from the quizBank
+            var noDuplicates = topics.Distinct().ToList(); //filters the topics to not show duplicated entries
+            string chosenTopic = UI.SelectATopic(noDuplicates); //prints the list of noDuplicated topics to the player
 
                 
 
