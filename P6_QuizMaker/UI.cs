@@ -115,22 +115,28 @@ namespace P6_QuizMaker
          
         }
 
+
+        /// <summary>
+        /// It presents the topic entries to the player and asks them to pick one 
+        /// </summary>
+        /// <param name="topics">List of topics</param>
+        /// <returns> The selected topic</returns>
         public static string SelectATopic (List<string> topics)
         {
             Console.WriteLine("Here are the topics of your questions: ");
             foreach (var topic in topics)
             {
-                Console.WriteLine($"\u25BA {topic}");
+                Console.WriteLine($"\u00bb  {topic}");
             }
             
             string selectedTopic;
             while (true)
             {
-                selectedTopic = GetPlayerInput("Which topic would you like to pick?");
+                selectedTopic = GetPlayerInput("\nWhich topic would you like to pick? ");
 
                 if (!topics.Contains(selectedTopic))
                 {
-                    Console.WriteLine("\nYour choice isn't listed above. Try again!");
+                    Console.WriteLine("Your choice isn't listed above. Try again!");
                     continue;
                 }
                 break;
