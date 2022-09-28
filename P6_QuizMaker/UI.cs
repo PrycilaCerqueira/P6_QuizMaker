@@ -121,12 +121,12 @@ namespace P6_QuizMaker
         /// </summary>
         /// <param name="topics">List of topics</param>
         /// <returns> The selected topic</returns>
-        public static string SelectATopic (List<string> topics)
+        public static string SelectATopic (IEnumerable<string> topics)
         {
             Console.WriteLine("Here are the topics of your questions: ");
             foreach (var topic in topics)
             {
-                Console.WriteLine($"\u00bb  {topic}");
+                Console.WriteLine($" \u00bb {topic}");
             }
             
             string selectedTopic;

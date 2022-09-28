@@ -16,7 +16,7 @@ namespace P6_QuizMaker // Note: actual namespace depends on the project name.
             var quizBank = new List<Quizzes>(); //The quizBank variable holds a list type Quiz
             for(int numOfQuestions = 0; numOfQuestions < 3; numOfQuestions++) //limits the number of questions that the player will input
             {
-                Quizzes quiz = new Quizzes(); //Created and initiated an instance of the my Quiz object to populated by the player 
+                Quizzes quiz = new Quizzes(); //Created and initiated an instance of the my Quizzes object to be populated by the player 
                 quiz.Topic = UI.GetPlayerInput("\nEnter the question topic: ");
                 quiz.Question = UI.GetPlayerInput("Enter the question: ");
                 quiz.Answer1 = UI.GetPlayerInput("Enter your answer 1: ");
@@ -49,12 +49,9 @@ namespace P6_QuizMaker // Note: actual namespace depends on the project name.
             UI.wantContinueGame();
             UI.PrintGameHeadline(trivia.Title);
 
-            //Preset the topics of the questions to the players https://learn.microsoft.com/en-us/dotnet/api/system.linq.enumerable.distinct?view=net-7.0
-            var topics = from item in quizBank
-                            where item.Topic != null
-                            select item.Topic; //collects all the topics from the quizBank
-            var noDuplicates = topics.Distinct().ToList(); //filters the topics to not show duplicated entries
-            string chosenTopic = UI.SelectATopic(noDuplicates); //prints the list of noDuplicated topics to the player
+            //Topics presentation
+            IEnumerable<string> topics = quizBank.Select(item => item.Topic).Distinct(); //collects all no repeated topics from the quizBank
+            string chosenTopic = UI.SelectATopic(topics); //prints the list of topics to the player
 
                 
 
