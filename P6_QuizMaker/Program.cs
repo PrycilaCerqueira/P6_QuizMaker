@@ -53,30 +53,16 @@ namespace P6_QuizMaker // Note: actual namespace depends on the project name.
             IEnumerable<string> topics = quizBank.Select(item => item.Topic).Distinct(); //collects all no repeated topics from the quizBank
             string chosenTopic = UI.SelectATopic(topics); //prints the list of topics to the player
 
-            var QuestionsOfChosenTopic = quizBank.Where(item => item.Topic == chosenTopic).; //collects all the questions of the same topic
+            var QuestionsOfChosenTopic = quizBank.Where(item => item.Topic == chosenTopic).ToList(); //collects all the questions of the same topic
 
 
             //TODO: Sort and retreive 1 question with its answers to present to the player
-            do
-            {
-                
-            } while (chosenTopic != $"*{chosenTopic}");
+            int max = QuestionsOfChosenTopic.Count() + 1;
+            Random rnd = new Random();
+            int rndIndex = rnd.Next(0, max);
 
-            
-
-
-
-
-            
-
-
-
-
-
-
-
-
-
+            Console.WriteLine(QuestionsOfChosenTopic[rndIndex].ToString());
+      
 
         }
     }
