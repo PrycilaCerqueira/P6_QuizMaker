@@ -145,6 +145,10 @@ namespace P6_QuizMaker
             }
             return selectedTopic;
         }
+        public static string GetPlayerQuizAnswer(Quizzes q)
+        {
+            return GetPlayerQuizAnswer(q.Question, q.Answer1, q.Answer2, q.Answer3, q.Answer4);
+        }
 
         public static string GetPlayerQuizAnswer(String Quest, string A1, string A2, String A3, string A4)
         {
@@ -155,7 +159,7 @@ namespace P6_QuizMaker
             int answerNum;
             while (true)
             {
-                selectedAnswer = Console.ReadLine().Trim().ToUpper();
+                selectedAnswer = Console.ReadLine().Trim();
 
                 if (!int.TryParse(selectedAnswer, out answerNum))
                 {
@@ -173,18 +177,19 @@ namespace P6_QuizMaker
             switch (answerNum)
             {
                 case 1:
-                    return A1;
+                    selectedAnswer = A1;
                     break;
                 case 2:
-                    return A2;
+                    selectedAnswer = A2;
                     break;
                 case 3:
-                    return A3;
+                    selectedAnswer = A3;
                     break;
                 case 4:
-                    return A4;
+                    selectedAnswer = A4;
                     break;
             }
+            return selectedAnswer;
 
 
         }

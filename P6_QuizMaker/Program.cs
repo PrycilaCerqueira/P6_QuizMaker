@@ -29,11 +29,12 @@ namespace P6_QuizMaker // Note: actual namespace depends on the project name.
             }
 
             //Game continuity confirmation
-            UI.wantContinueGame();
+            UI.wantContinueGame(); //TODO: Move to exit to the main code
             UI.PrintGameHeadline(trivia.Title);
             
             //Player Info
             int numOfPlayers = UI.HowManyPlayers();
+            
             var playersBank = new List<Players>();
             for(int nPlayer = 0; nPlayer < numOfPlayers; nPlayer++)
             {
@@ -57,17 +58,19 @@ namespace P6_QuizMaker // Note: actual namespace depends on the project name.
             //TODO: Sort and retreive 1 question with its answers to present to the player
             int max = QuestionsOfChosenTopic.Count() + 1;
             Random rnd = new Random();
-            int rndIndex = rnd.Next(0, max);
-            var shuffledQuiz = QuestionsOfChosenTopic[rndIndex];
+            int rndIndex = rnd.Next(1, max); //TODO: array index starts with 0 ;)
+            Quizzes shuffledQuiz = QuestionsOfChosenTopic[rndIndex];
             //Console.WriteLine(QuestionsOfChosenTopic[rndIndex].ToString());
+            
             
             string playerAnswer;
             if(shuffledQuiz.Question != $"*{shuffledQuiz.Question}")
             {
                 playerAnswer = UI.GetPlayerQuizAnswer(shuffledQuiz.Question, shuffledQuiz.Answer1, shuffledQuiz.Answer2,shuffledQuiz.Answer3,shuffledQuiz.Answer4);
-
+                playerAnswer = UI.GetPlayerQuizAnswer(shuffledQuiz);
 
             }
+            
             
       
 
