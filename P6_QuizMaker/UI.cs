@@ -1,4 +1,5 @@
 ﻿using System.Runtime.CompilerServices;
+using System.Security.Cryptography;
 
 namespace P6_QuizMaker
 {
@@ -22,8 +23,8 @@ namespace P6_QuizMaker
                 ");
 
         }
-        
-        
+
+
         /// <summary>
         /// Prints the game description on the console for the players
         /// </summary>
@@ -67,14 +68,14 @@ namespace P6_QuizMaker
             }
             return numOfPlayers;
         }
-        
+
         /// <summary>
         /// Allows the user to enter their inputs to the system
         /// </summary>
         /// <param name="requestHeadline">Question or Resquest</param>
         /// <returns>The answers of the question or request</returns>
         public static string GetPlayerInput(string requestHeadline)
-        {         
+        {
             Console.Write(requestHeadline);
             string playerInput;
             while (true)
@@ -97,22 +98,22 @@ namespace P6_QuizMaker
             return playerInput;
 
         }
-        
+
         /// <summary>
         /// Confirms whether the player would like to continue the game or not
         /// </summary>
         public static void wantContinueGame()
         {
             Console.WriteLine("\nWould you like to continue? (Y/N)");
-            if(Console.ReadKey().Key == ConsoleKey.Y)
+            if (Console.ReadKey().Key == ConsoleKey.Y)
             {
                 Console.Clear();
             }
-            else 
+            else
             {
-                Environment.Exit(0);   
+                Environment.Exit(0);
             }
-         
+
         }
 
 
@@ -121,14 +122,14 @@ namespace P6_QuizMaker
         /// </summary>
         /// <param name="topics">List of topics</param>
         /// <returns> The selected topic</returns>
-        public static string SelectATopic (IEnumerable<string> topics)
+        public static string SelectATopic(IEnumerable<string> topics)
         {
             Console.WriteLine("Here are the topics of your questions: ");
             foreach (var topic in topics)
             {
                 Console.WriteLine($" \u00bb {topic}");
             }
-            
+
             string selectedTopic;
             while (true)
             {
@@ -144,5 +145,49 @@ namespace P6_QuizMaker
             }
             return selectedTopic;
         }
+
+        public static string GetPlayerQuizAnswer(String Quest, string A1, string A2, String A3, string A4)
+        {
+            Console.WriteLine();
+            Console.WriteLine($"Question: {Quest}\n 1) {A1}\n 2) {A2}\n 3) {A3}\n 4) {A4}");
+
+            string selectedAnswer;
+            int answerNum;
+            while (true)
+            {
+                selectedAnswer = Console.ReadLine().Trim().ToUpper();
+
+                if (!int.TryParse(selectedAnswer, out answerNum))
+                {
+                    Console.WriteLine("This field only accepts a number entry. Try again!");
+                    continue;
+                }
+                if (answerNum < 1 || answerNum > 4)
+                {
+                    Console.WriteLine("Entry is invalid. Chose a number between 1 and 4.");
+                    continue;
+                }
+                break;
+            }
+
+            switch (answerNum)
+            {
+                case 1:
+                    return A1;
+                    break;
+                case 2:
+                    return A2;
+                    break;
+                case 3:
+                    return A3;
+                    break;
+                case 4:
+                    return A4;
+                    break;
+            }
+
+
+        }
     }
 }
+
