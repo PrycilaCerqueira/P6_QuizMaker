@@ -12,6 +12,7 @@ namespace P6_QuizMaker
         public static void PrintGameHeadline(string gameTitle)
         {
             //Console.WriteLine($"Welcome to {gameTitle}");
+            Console.Clear();
             Console.WriteLine
                 (@"
                       ______     _       _          ____                  __ 
@@ -102,16 +103,16 @@ namespace P6_QuizMaker
         /// <summary>
         /// Confirms whether the player would like to continue the game or not
         /// </summary>
-        public static void wantContinueGame()
+        public static bool WantContinueGame()
         {
             Console.WriteLine("\nWould you like to continue? (Y/N)");
             if (Console.ReadKey().Key == ConsoleKey.Y)
             {
-                Console.Clear();
+                return false;
             }
             else
             {
-                Environment.Exit(0);
+                return true;
             }
 
         }
@@ -145,7 +146,7 @@ namespace P6_QuizMaker
             }
             return selectedTopic;
         }
-        public static string GetPlayerQuizAnswer(Quizzes q)
+        public static string GetPlayerQuizAnswer(Quiz q)
         {
             return GetPlayerQuizAnswer(q.Question, q.Answer1, q.Answer2, q.Answer3, q.Answer4);
         }

@@ -13,10 +13,10 @@ namespace P6_QuizMaker // Note: actual namespace depends on the project name.
             UI.PrintGameInstructions(trivia.Description);
             
             //Quiz DB Creation
-            var quizBank = new List<Quizzes>(); //The quizBank variable holds a list type Quiz
+            List<Quiz> quizzesDB = new List<Quiz>(); //The quizBank variable holds a list type Quiz
             for(int numOfQuestions = 0; numOfQuestions < 3; numOfQuestions++) //limits the number of questions that the player will input
             {
-                Quizzes quiz = new Quizzes(); //Created and initiated an instance of the my Quizzes object to be populated by the player 
+                Quiz quiz = new Quiz(); //Created and initiated an instance of the my Quizzes object to be populated by the player 
                 quiz.Topic = UI.GetPlayerInput("\nEnter the question topic: ");
                 quiz.Question = UI.GetPlayerInput("Enter the question: ");
                 quiz.Answer1 = UI.GetPlayerInput("Enter your answer 1: ");
@@ -25,44 +25,42 @@ namespace P6_QuizMaker // Note: actual namespace depends on the project name.
                 quiz.Answer4 = UI.GetPlayerInput("Enter your answer 4: ");
                 quiz.CorrectAnswer = UI.GetPlayerInput("Enter right answer to your question: ");
 
-                quizBank.Add(quiz); //adds the the quiz instance data entered by the player to the quizBank variable
+                quizzesDB.Add(quiz); //adds the the quiz instance data entered by the player to the quizBank variable
             }
 
             //Game continuity confirmation
-            UI.wantContinueGame(); //TODO: Move to exit to the main code
+            bool confirmation = UI.WantContinueGame();
+            if (confirmation == true)
+            {
+                Environment.Exit(0);
+            }
             UI.PrintGameHeadline(trivia.Title);
             
             //Player Info
             int numOfPlayers = UI.HowManyPlayers();
-            
-            var playersBank = new List<Players>();
+            List <Player> playersDB = new List<Player>();
             for(int nPlayer = 0; nPlayer < numOfPlayers; nPlayer++)
             {
-                Players player = new Players();
+                Player player = new Player();
                 player.ID = UI.GetPlayerInput("\nCreate your in-game ID: ");
                 player.Name = UI.GetPlayerInput("Enter your full name: ");
                 player.Score = 0;
 
-                playersBank.Add(player);
+                playersDB.Add(player);
             }
 
-            //Game continuity confirmation
-            UI.wantContinueGame();
-            UI.PrintGameHeadline(trivia.Title);
-
             //Topics presentation
-            IEnumerable<string> topics = quizBank.Select(item => item.Topic).Distinct(); //collects all no repeated topics from the quizBank
+            UI.PrintGameHeadline(trivia.Title);
+            IEnumerable<string> topics = quizzesDB.Select(item => item.Topic).Distinct(); //collects all no repeated topics from the quizBank
             string chosenTopic = UI.SelectATopic(topics); //prints the list of topics to the player
-            var QuestionsOfChosenTopic = quizBank.Where(item => item.Topic == chosenTopic).ToList(); //collects all the questions of the same topic
+            var QuestionsOfChosenTopic = quizzesDB.Where(item => item.Topic == chosenTopic).ToList(); //collects all the questions of the same topic
 
             //TODO: Sort and retreive 1 question with its answers to present to the player
-            int max = QuestionsOfChosenTopic.Count() + 1;
+            int max = QuestionsOfChosenTopic.Count();
             Random rnd = new Random();
-            int rndIndex = rnd.Next(1, max); //TODO: array index starts with 0 ;)
-            Quizzes shuffledQuiz = QuestionsOfChosenTopic[rndIndex];
-            //Console.WriteLine(QuestionsOfChosenTopic[rndIndex].ToString());
-            
-            
+            int rndIndex = rnd.Next(0, max);
+            Quiz shuffledQuiz = QuestionsOfChosenTopic[rndIndex];
+                        
             string playerAnswer;
             if(shuffledQuiz.Question != $"*{shuffledQuiz.Question}")
             {
