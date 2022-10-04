@@ -13,7 +13,7 @@ namespace P6_QuizMaker // Note: actual namespace depends on the project name.
             UI.PrintGameInstructions(trivia.Description);
             
             //Quiz DB Creation
-            List<Quiz> quizzesDB = new List<Quiz>(); //The quizBank variable holds a list type Quiz
+            var quizDB = new List<Quiz>(); //The quizBank variable holds a list type Quiz
             for(int numOfQuestions = 0; numOfQuestions < 3; numOfQuestions++) //limits the number of questions that the player will input
             {
                 Quiz quiz = new Quiz(); //Created and initiated an instance of the my Quizzes object to be populated by the player 
@@ -25,7 +25,7 @@ namespace P6_QuizMaker // Note: actual namespace depends on the project name.
                 quiz.Answer4 = UI.GetPlayerInput("Enter your answer 4: ");
                 quiz.CorrectAnswer = UI.GetPlayerInput("Enter right answer to your question: ");
 
-                quizzesDB.Add(quiz); //adds the the quiz instance data entered by the player to the quizBank variable
+                quizDB.Add(quiz); //adds the the quiz instance data entered by the player to the quizBank variable
             }
 
             //Game continuity confirmation
@@ -38,34 +38,35 @@ namespace P6_QuizMaker // Note: actual namespace depends on the project name.
             
             //Player Info
             int numOfPlayers = UI.HowManyPlayers();
-            List <Player> playersDB = new List<Player>();
+            
+            var playersDB = new List<Player>();
             for(int nPlayer = 0; nPlayer < numOfPlayers; nPlayer++)
             {
-                Player player = new Player();
-                player.ID = UI.GetPlayerInput("\nCreate your in-game ID: ");
-                player.Name = UI.GetPlayerInput("Enter your full name: ");
-                player.Score = 0;
+                Player players = new Player();
+                players.ID = UI.GetPlayerInput("\nCreate your in-game ID: ");
+                players.Name = UI.GetPlayerInput("Enter your full name: ");
+                players.Score = 0;
 
-                playersDB.Add(player);
+                playersDB.Add(players);
             }
 
             //Topics presentation
             UI.PrintGameHeadline(trivia.Title);
-            IEnumerable<string> topics = quizzesDB.Select(item => item.Topic).Distinct(); //collects all no repeated topics from the quizBank
+            IEnumerable<string> topics = quizDB.Select(item => item.Topic).Distinct(); //collects all no repeated topics from the quizBank
             string chosenTopic = UI.SelectATopic(topics); //prints the list of topics to the player
-            var QuestionsOfChosenTopic = quizzesDB.Where(item => item.Topic == chosenTopic).ToList(); //collects all the questions of the same topic
+            var QuestionsOfChosenTopic = quizDB.Where(item => item.Topic == chosenTopic).ToList(); //collects all the questions of the same topic
 
             //TODO: Sort and retreive 1 question with its answers to present to the player
             int max = QuestionsOfChosenTopic.Count();
             Random rnd = new Random();
             int rndIndex = rnd.Next(0, max);
-            Quiz shuffledQuiz = QuestionsOfChosenTopic[rndIndex];
-                        
+            Quiz shuffledQuiz = QuestionsOfChosenTopic[rndIndex];          
+            
             string playerAnswer;
             if(shuffledQuiz.Question != $"*{shuffledQuiz.Question}")
             {
-                playerAnswer = UI.GetPlayerQuizAnswer(shuffledQuiz.Question, shuffledQuiz.Answer1, shuffledQuiz.Answer2,shuffledQuiz.Answer3,shuffledQuiz.Answer4);
                 playerAnswer = UI.GetPlayerQuizAnswer(shuffledQuiz);
+                
 
             }
             

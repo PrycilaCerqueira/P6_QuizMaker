@@ -146,15 +146,12 @@ namespace P6_QuizMaker
             }
             return selectedTopic;
         }
-        public static string GetPlayerQuizAnswer(Quiz q)
-        {
-            return GetPlayerQuizAnswer(q.Question, q.Answer1, q.Answer2, q.Answer3, q.Answer4);
-        }
 
-        public static string GetPlayerQuizAnswer(String Quest, string A1, string A2, String A3, string A4)
+
+        public static string GetPlayerQuizAnswer(Quiz item)
         {
             Console.WriteLine();
-            Console.WriteLine($"Question: {Quest}\n 1) {A1}\n 2) {A2}\n 3) {A3}\n 4) {A4}");
+            Console.WriteLine($"Question: {item.Question}\n 1) {item.Answer1}\n 2) {item.Answer2}\n 3) {item.Answer3}\n 4) {item.Answer4}");
 
             string selectedAnswer;
             int answerNum;
@@ -178,16 +175,16 @@ namespace P6_QuizMaker
             switch (answerNum)
             {
                 case 1:
-                    selectedAnswer = A1;
+                    selectedAnswer = item.Answer1;
                     break;
                 case 2:
-                    selectedAnswer = A2;
+                    selectedAnswer = item.Answer2;
                     break;
                 case 3:
-                    selectedAnswer = A3;
+                    selectedAnswer = item.Answer3;
                     break;
                 case 4:
-                    selectedAnswer = A4;
+                    selectedAnswer = item.Answer4;
                     break;
             }
             return selectedAnswer;
