@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 
 namespace P6_QuizMaker // Note: actual namespace depends on the project name.
@@ -13,7 +14,7 @@ namespace P6_QuizMaker // Note: actual namespace depends on the project name.
             UI.PrintGameInstructions(trivia.Description);
             
             //Quiz DB Creation
-            var quizDB = new List<Quiz>(); //The quizBank variable holds a list type Quiz
+            List<Quiz> quizDB = new List<Quiz>(); //The quizBank variable holds a list type Quiz
             for(int numOfQuestions = 0; numOfQuestions < 3; numOfQuestions++) //limits the number of questions that the player will input
             {
                 Quiz quiz = new Quiz(); //Created and initiated an instance of the my Quizzes object to be populated by the player 
@@ -54,7 +55,7 @@ namespace P6_QuizMaker // Note: actual namespace depends on the project name.
             UI.PrintGameHeadline(trivia.Title);
             IEnumerable<string> topics = quizDB.Select(item => item.Topic).Distinct(); //collects all no repeated topics from the quizBank
             string chosenTopic = UI.SelectATopic(topics); //prints the list of topics to the player
-            var QuestionsOfChosenTopic = quizDB.Where(item => item.Topic == chosenTopic).ToList(); //collects all the questions of the same topic
+            List<Quiz> QuestionsOfChosenTopic = quizDB.Where(item => item.Topic == chosenTopic).ToList(); //collects all the questions of the same topic
 
             //TODO: Sort and retreive 1 question with its answers to present to the player
             int max = QuestionsOfChosenTopic.Count();
@@ -66,7 +67,9 @@ namespace P6_QuizMaker // Note: actual namespace depends on the project name.
             if(shuffledQuiz.Question != $"*{shuffledQuiz.Question}")
             {
                 playerAnswer = UI.GetPlayerQuizAnswer(shuffledQuiz);
-                
+
+                //TODO: Mark as used quiz in the QuizDB (test) 
+                QuestionsOfChosenTopic[rndIndex].Question = $"*{QuestionsOfChosenTopic[rndIndex].Question}";
 
             }
             
