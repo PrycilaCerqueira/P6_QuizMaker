@@ -147,11 +147,11 @@ namespace P6_QuizMaker
             return selectedTopic;
         }
 
-
+        /*
         public static string GetPlayerQuizAnswer(Quiz item)
         {
             Console.WriteLine();
-            Console.WriteLine($"Question: {item.Question}\n 1) {item.Answer1}\n 2) {item.Answer2}\n 3) {item.Answer3}\n 4) {item.Answer4}");
+            Console.WriteLine($"Question: {item.Question}\n 1) {item.Answer}\n 2) {item.Answer2}\n 3) {item.Answer3}\n 4) {item.Answer4}");
 
             string selectedAnswer;
             int answerNum;
@@ -171,11 +171,11 @@ namespace P6_QuizMaker
                 }
                 break;
             }
-
+            
             switch (answerNum)
             {
                 case 1:
-                    selectedAnswer = item.Answer1;
+                    selectedAnswer = item.Answer;
                     break;
                 case 2:
                     selectedAnswer = item.Answer2;
@@ -191,6 +191,7 @@ namespace P6_QuizMaker
 
 
         }
+        */
     }
 }
 
