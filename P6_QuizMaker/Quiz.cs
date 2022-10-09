@@ -11,8 +11,8 @@ namespace P6_QuizMaker
     {
         public string Topic { get; set; }
         public string Question {get; set;}     
-        public string Answer { get; set; }
-        //public List<string> QuizAnswers { get; set; } = new List<string>();
+        //public string Answer { get; set; }
+        public List<string> QuizAnswers { get; set; } = new List<string>();
 
         //public string Answer2 { get; set; }
         //public string Answer3 { get; set; }

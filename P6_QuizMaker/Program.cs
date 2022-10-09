@@ -21,30 +21,29 @@ namespace P6_QuizMaker // Note: actual namespace depends on the project name.
                 quiz.Topic = UI.GetPlayerInput("\nEnter the question topic: ");
                 quiz.Question = UI.GetPlayerInput("Enter the question: ");
                
-                List <Quiz> quizAnswers = new List<Quiz>();
-                for (int numOfAnswers = 0; numOfAnswers < 6; numOfAnswers++)
+                List <string> quizAnswers = new List<string>(); //creates a local list of answers to be added to the object QuizAnswers list later
+                for (int numOfAnswers = 0; numOfAnswers < 5; numOfAnswers++)
                 {
-                    Quiz ans = new Quiz();
-                    if (numOfAnswers < 5)
+                    if (numOfAnswers != 0)
                     {
-                        ans.Answer = UI.GetPlayerInput($"Enter your answer number {numOfAnswers}: ");
+                        quizAnswers.Add(UI.GetPlayerInput($"Enter an answer: "));
                     }
                     else
                     {
-                        ans.Answer = UI.GetPlayerInput("Enter right answer to your question: ");
-                    }
-                    quizAnswers.Add(ans);                    
+                        quizAnswers.Add(UI.GetPlayerInput("Enter the right answer: "));
+                        quizAnswers[0] = $"*{quizAnswers[0]}"; //The correct answers will be identified by the symbol *
+                    }                   
                 }
-                
-                quizDB.AddRange(quiz, quizAnswers[numOfQuestions]); //adds the the quiz instance data entered by the player to the quizBank variable
+                quiz.QuizAnswers.AddRange(quizAnswers); //adds the QuizAnswers Object list a range of answers from the quizAnswers string list - {0 to 4}
+                quizDB.Add(quiz); //adds the quiz instance data entered by the player to the quizBank variable
             }
 
             //quiz.Answer2 = UI.GetPlayerInput("Enter your answer 2: ");
             //quiz.Answer3 = UI.GetPlayerInput("Enter your answer 3: ");
             //quiz.Answer4 = UI.GetPlayerInput("Enter your answer 4: ");
 
-        }
-            /*
+        
+            
             //Game continuity confirmation
             bool confirmation = UI.WantContinueGame();
             if (confirmation == true)
@@ -88,8 +87,7 @@ namespace P6_QuizMaker // Note: actual namespace depends on the project name.
                 QuestionsOfChosenTopic[rndIndex].Question = $"*{QuestionsOfChosenTopic[rndIndex].Question}";
 
             }
-            */
-            
+                        
             
       
 
