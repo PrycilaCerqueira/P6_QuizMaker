@@ -34,16 +34,10 @@ namespace P6_QuizMaker // Note: actual namespace depends on the project name.
                         quizAnswers[0] = $"*{quizAnswers[0]}"; //The correct answers will be identified by the symbol *
                     }                   
                 }
-                quiz.QuizAnswers.AddRange(quizAnswers); //adds the QuizAnswers Object list a range of answers from the quizAnswers string list - {0 to 4}
+                quiz.QuizAnswers.AddRange(quizAnswers); //adds the QuizAnswers Object list a range of answers from the quizAnswers string list - {0 to 4, etc.}
                 quizDB.Add(quiz); //adds the quiz instance data entered by the player to the quizBank variable
             }
-
-            //quiz.Answer2 = UI.GetPlayerInput("Enter your answer 2: ");
-            //quiz.Answer3 = UI.GetPlayerInput("Enter your answer 3: ");
-            //quiz.Answer4 = UI.GetPlayerInput("Enter your answer 4: ");
-
-        
-            
+           
             //Game continuity confirmation
             bool confirmation = UI.WantContinueGame();
             if (confirmation == true)
