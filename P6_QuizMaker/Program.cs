@@ -47,6 +47,7 @@ namespace P6_QuizMaker // Note: actual namespace depends on the project name.
             UI.PrintGameHeadline(trivia.Title);
             
             //Player Info
+            /*
             int numOfPlayers = UI.HowManyPlayers();
             List <Player> playersDB = new List<Player>();
             for(int nPlayer = 0; nPlayer < numOfPlayers; nPlayer++)
@@ -58,6 +59,7 @@ namespace P6_QuizMaker // Note: actual namespace depends on the project name.
 
                 playersDB.Add(players);
             }
+            */
 
             //Topics presentation
             UI.PrintGameHeadline(trivia.Title);

@@ -172,6 +172,8 @@ namespace P6_QuizMaker
             //Gets the player response for the question
             string selectedAnswer;
             int answerNum;
+
+            Console.Write("Which number you choose: ");
             while (true)
             {
                 selectedAnswer = Console.ReadLine().Trim();
@@ -181,29 +183,32 @@ namespace P6_QuizMaker
                     Console.WriteLine("This field only accepts a number entry. Try again!");
                     continue;
                 }
-                if (answerNum < 1 || answerNum > 4)
+                if (answerNum < 1 || answerNum > 5)
                 {
-                    Console.WriteLine("Entry is invalid. Chose a number between 1 and 4.");
+                    Console.WriteLine("Entry is invalid. Select a number between 1 and 5.");
                     continue;
                 }
                 break;
             }
-            /*
+            
             switch (answerNum)
             {
                 case 1:
-                    selectedAnswer = item.Answer;
+                    selectedAnswer = item.Answers[0];
                     break;
                 case 2:
-                    selectedAnswer = item.Answer2;
+                    selectedAnswer = item.Answers[1];
                     break;
                 case 3:
-                    selectedAnswer = item.Answer3;
+                    selectedAnswer = item.Answers[2];
                     break;
                 case 4:
-                    selectedAnswer = item.Answer4;
+                    selectedAnswer = item.Answers[3];
                     break;
-            }*/
+                case 5: 
+                    selectedAnswer = item.Answers[4];
+                    break;
+            }
             return selectedAnswer;
 
 
