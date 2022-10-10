@@ -150,9 +150,26 @@ namespace P6_QuizMaker
         
         public static string GetPlayerQuizAnswer(Quiz item)
         {
+            //Prints the question and its answers
             Console.WriteLine();
-            Console.WriteLine($"Question: {item.Question}\n 1) {item.QuizAnswers}\n 2) {item.Answer2}\n 3) {item.Answer3}\n 4) {item.Answer4}");
+            Console.WriteLine($"Question: {item.Question}");
 
+            int i = 1;
+            foreach(string ans in item.Answers)
+            {
+                if (ans.Contains("*"))
+                {
+                    string modifiedAns = ans.Remove(0, 1); //Modifies answer by removing the * element from index 0 with a length of 1. In other words, removes answer's first string element. 
+                    Console.WriteLine($"{i}) {modifiedAns}");
+                }
+                else
+                {
+                    Console.WriteLine($"{i}) {ans}");
+                }
+                i++;
+            }
+
+            //Gets the player response for the question
             string selectedAnswer;
             int answerNum;
             while (true)
@@ -171,7 +188,7 @@ namespace P6_QuizMaker
                 }
                 break;
             }
-            
+            /*
             switch (answerNum)
             {
                 case 1:
@@ -186,7 +203,7 @@ namespace P6_QuizMaker
                 case 4:
                     selectedAnswer = item.Answer4;
                     break;
-            }
+            }*/
             return selectedAnswer;
 
 

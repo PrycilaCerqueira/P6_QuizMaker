@@ -34,7 +34,7 @@ namespace P6_QuizMaker // Note: actual namespace depends on the project name.
                         quizAnswers[0] = $"*{quizAnswers[0]}"; //The correct answers will be identified by the symbol *
                     }                   
                 }
-                quiz.QuizAnswers.AddRange(quizAnswers); //adds the QuizAnswers Object list a range of answers from the quizAnswers string list - {0 to 4, etc.}
+                quiz.Answers.AddRange(quizAnswers); //adds to the Answers Object a list of answers from the quizAnswers string - {0 to 4, etc.}
                 quizDB.Add(quiz); //adds the quiz instance data entered by the player to the quizBank variable
             }
            
@@ -48,8 +48,7 @@ namespace P6_QuizMaker // Note: actual namespace depends on the project name.
             
             //Player Info
             int numOfPlayers = UI.HowManyPlayers();
-            
-            var playersDB = new List<Player>();
+            List <Player> playersDB = new List<Player>();
             for(int nPlayer = 0; nPlayer < numOfPlayers; nPlayer++)
             {
                 Player players = new Player();
@@ -62,7 +61,7 @@ namespace P6_QuizMaker // Note: actual namespace depends on the project name.
 
             //Topics presentation
             UI.PrintGameHeadline(trivia.Title);
-            IEnumerable<string> topics = quizDB.Select(item => item.Topic).Distinct(); //collects all no repeated topics from the quizBank
+            IEnumerable<string> topics = quizDB.Select(item => item.Topic).Distinct(); //collects all NO repeated topics from the quizBank
             string chosenTopic = UI.SelectATopic(topics); //prints the list of topics to the player
             List<Quiz> QuestionsOfChosenTopic = quizDB.Where(item => item.Topic == chosenTopic).ToList(); //collects all the questions of the same topic
 
@@ -70,8 +69,8 @@ namespace P6_QuizMaker // Note: actual namespace depends on the project name.
             int max = QuestionsOfChosenTopic.Count();
             Random rnd = new Random();
             int rndIndex = rnd.Next(0, max);
-            Quiz shuffledQuiz = QuestionsOfChosenTopic[rndIndex];          
-            
+            Quiz shuffledQuiz = QuestionsOfChosenTopic[rndIndex];
+
             string playerAnswer;
             if(shuffledQuiz.Question != $"*{shuffledQuiz.Question}")
             {
