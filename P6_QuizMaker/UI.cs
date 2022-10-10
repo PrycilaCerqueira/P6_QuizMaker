@@ -147,8 +147,12 @@ namespace P6_QuizMaker
             return selectedTopic;
         }
 
-        
-        public static string GetPlayerQuizAnswer(Quiz item)
+        /// <summary>
+        /// Prints the Quiz to the player and asks for their answer
+        /// </summary>
+        /// <param name="item">A set of question and its answers</param>
+        /// <returns>The player's chosen answer</returns>
+        public static bool GetPlayerQuizAnswer(Quiz item)
         {
             //Prints the question and its answers
             Console.WriteLine();
@@ -190,7 +194,7 @@ namespace P6_QuizMaker
                 }
                 break;
             }
-            
+
             switch (answerNum)
             {
                 case 1:
@@ -209,7 +213,12 @@ namespace P6_QuizMaker
                     selectedAnswer = item.Answers[4];
                     break;
             }
-            return selectedAnswer;
+            
+            if (selectedAnswer.Contains("*"))
+            {
+                return true;
+            }
+            return false;
 
 
         }

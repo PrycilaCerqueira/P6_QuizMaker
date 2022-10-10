@@ -47,7 +47,6 @@ namespace P6_QuizMaker // Note: actual namespace depends on the project name.
             UI.PrintGameHeadline(trivia.Title);
             
             //Player Info
-            /*
             int numOfPlayers = UI.HowManyPlayers();
             List <Player> playersDB = new List<Player>();
             for(int nPlayer = 0; nPlayer < numOfPlayers; nPlayer++)
@@ -59,30 +58,39 @@ namespace P6_QuizMaker // Note: actual namespace depends on the project name.
 
                 playersDB.Add(players);
             }
-            */
+            
 
             //Topics presentation
             UI.PrintGameHeadline(trivia.Title);
             IEnumerable<string> topics = quizDB.Select(item => item.Topic).Distinct(); //collects all NO repeated topics from the quizBank
             string chosenTopic = UI.SelectATopic(topics); //prints the list of topics to the player
             List<Quiz> QuestionsOfChosenTopic = quizDB.Where(item => item.Topic == chosenTopic).ToList(); //collects all the questions of the same topic
-
-            //TODO: Sort and retreive 1 question with its answers to present to the player
+            
+            //Select a random quiz from QuizDB
             int max = QuestionsOfChosenTopic.Count();
             Random rnd = new Random();
-            int rndIndex = rnd.Next(0, max);
-            Quiz shuffledQuiz = QuestionsOfChosenTopic[rndIndex];
 
-            string playerAnswer;
-            if(shuffledQuiz.Question != $"*{shuffledQuiz.Question}")
+            while (true)
             {
-                playerAnswer = UI.GetPlayerQuizAnswer(shuffledQuiz);
+                int rndIndex = rnd.Next(0, max);
+                QuestionsOfChosenTopic[rndIndex].Answers.OrderBy(item => rnd.Next(0, 5)); //TODO: Shuffle the answers before presenting to the players
+                Quiz shuffledQuiz = QuestionsOfChosenTopic[rndIndex];
 
-                //TODO: Mark as used quiz in the QuizDB (test) 
-                QuestionsOfChosenTopic[rndIndex].Question = $"*{QuestionsOfChosenTopic[rndIndex].Question}";
+                
 
-            }
-                        
+                bool isRightAnswer;
+                if (!shuffledQuiz.Question.Contains("*"))
+                {
+                    isRightAnswer = UI.GetPlayerQuizAnswer(shuffledQuiz);
+
+                    //TODO: Mark as used quiz in the QuizDB (test) 
+                    QuestionsOfChosenTopic[rndIndex].Question = $"*{QuestionsOfChosenTopic[rndIndex].Question}";
+
+                }
+            }      
+            
+
+            
             
       
 
