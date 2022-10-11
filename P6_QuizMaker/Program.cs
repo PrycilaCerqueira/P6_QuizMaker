@@ -74,8 +74,8 @@ namespace P6_QuizMaker // Note: actual namespace depends on the project name.
             while (true)
             {
                 int rndIndex = rnd.Next(0, max);
-                Quiz shuffledQuiz = QuestionsOfChosenTopic[rndIndex]; //Saves aside the rndQuiz
-                List<string> shuffledAnswers = QuestionsOfChosenTopic[rndIndex].Answers.OrderBy(item => rnd.Next()).ToList();//Shuffles the rndQuiz answers before presenting to the players
+                Quiz shuffledQuiz = QuestionsOfChosenTopic[rndIndex]; //Saves aside the rndQuiz to keep the original intact
+                List<string> shuffledAnswers = shuffledQuiz.Answers.OrderBy(item => rnd.Next()).ToList();//Shuffles the rndQuiz answers before presenting them to the players
                 shuffledQuiz.Answers = shuffledAnswers; //Replaces the original shuffledQuiz answers with the shuffledAnswers, so the order of the answers will always different   
 
                 bool isRightAnswer;
