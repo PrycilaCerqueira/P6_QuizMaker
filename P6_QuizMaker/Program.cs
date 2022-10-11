@@ -66,6 +66,7 @@ namespace P6_QuizMaker // Note: actual namespace depends on the project name.
             string chosenTopic = UI.SelectATopic(topics); //prints the list of topics to the player
             List<Quiz> QuestionsOfChosenTopic = quizDB.Where(item => item.Topic == chosenTopic).ToList(); //collects all the questions of the same topic
             
+
             //Select a random quiz from QuizDB
             int max = QuestionsOfChosenTopic.Count();
             Random rnd = new Random();
@@ -73,20 +74,20 @@ namespace P6_QuizMaker // Note: actual namespace depends on the project name.
             while (true)
             {
                 int rndIndex = rnd.Next(0, max);
-                QuestionsOfChosenTopic[rndIndex].Answers.OrderBy(item => rnd.Next(0, 5)); //TODO: Shuffle the answers before presenting to the players
-                Quiz shuffledQuiz = QuestionsOfChosenTopic[rndIndex];
-
-                
+                Quiz shuffledQuiz = QuestionsOfChosenTopic[rndIndex]; //Saves aside the rndQuiz
+                List<string> shuffledAnswers = QuestionsOfChosenTopic[rndIndex].Answers.OrderBy(item => rnd.Next()).ToList();//Shuffles the rndQuiz answers before presenting to the players
+                shuffledQuiz.Answers = shuffledAnswers; //Replaces the original shuffledQuiz answers with the shuffledAnswers, so the order of the answers will always different   
 
                 bool isRightAnswer;
-                if (!shuffledQuiz.Question.Contains("*"))
+                if (!shuffledQuiz.Question.Contains("#"))
                 {
                     isRightAnswer = UI.GetPlayerQuizAnswer(shuffledQuiz);
 
-                    //TODO: Mark as used quiz in the QuizDB (test) 
-                    QuestionsOfChosenTopic[rndIndex].Question = $"*{QuestionsOfChosenTopic[rndIndex].Question}";
+                  
+                    QuestionsOfChosenTopic[rndIndex].Question = $"#{QuestionsOfChosenTopic[rndIndex].Question}"; //Add # to the quiz in the QuizDB to identify as used
 
                 }
+                break;
             }      
             
 
