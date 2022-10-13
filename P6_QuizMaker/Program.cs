@@ -58,37 +58,54 @@ namespace P6_QuizMaker // Note: actual namespace depends on the project name.
 
                 playersDB.Add(players);
             }
-            
+
 
             //Topics presentation
-            UI.PrintGameHeadline(trivia.Title);
-            IEnumerable<string> topics = quizDB.Select(item => item.Topic).Distinct(); //collects all NO repeated topics from the quizBank
-            string chosenTopic = UI.SelectATopic(topics); //prints the list of topics to the player
-            List<Quiz> QuestionsOfChosenTopic = quizDB.Where(item => item.Topic == chosenTopic).ToList(); //collects all the questions of the same topic
             
-
-            //Select a random quiz from QuizDB
-            int max = QuestionsOfChosenTopic.Count();
-            Random rnd = new Random();
-
+            IEnumerable<string> topics = quizDB.Select(item => item.Topic).Distinct(); //collects all NO repeated topics from the quizBank
+            
             while (true)
             {
-                int rndIndex = rnd.Next(0, max);
-                Quiz shuffledQuiz = QuestionsOfChosenTopic[rndIndex]; //Saves aside the rndQuiz to keep the original intact
-                List<string> shuffledAnswers = shuffledQuiz.Answers.OrderBy(item => rnd.Next()).ToList();//Shuffles the rndQuiz answers before presenting them to the players
-                shuffledQuiz.Answers = shuffledAnswers; //Replaces the original shuffledQuiz answers with the shuffledAnswers, so the order of the answers will always different   
+                UI.PrintGameHeadline(trivia.Title);
+                string chosenTopic = UI.SelectATopic(topics); //prints the list of topics to the player
+                List<Quiz> questionsOfChosenTopic = quizDB.Where(item => item.Topic == chosenTopic).ToList(); //collects all the questions of the same topic
+               
+                //Select a random quiz from QuizDB
+                int max = questionsOfChosenTopic.Count();
+                Random rnd = new Random();
 
-                bool isRightAnswer;
-                if (!shuffledQuiz.Question.Contains("#"))
+                while (true)
                 {
-                    isRightAnswer = UI.GetPlayerQuizAnswer(shuffledQuiz);
+                    int rndIndex = rnd.Next(0, max);
+                    Quiz shuffledQuiz = questionsOfChosenTopic[rndIndex]; //Saves aside the rndQuiz to keep the original intact
+                    List<string> shuffledAnswers = shuffledQuiz.Answers.OrderBy(item => rnd.Next()).ToList();//Shuffles the rndQuiz answers before presenting them to the players
+                    shuffledQuiz.Answers = shuffledAnswers; //Replaces the original shuffledQuiz answers with the shuffledAnswers, so the order of the answers will always different   
 
-                  
-                    QuestionsOfChosenTopic[rndIndex].Question = $"#{QuestionsOfChosenTopic[rndIndex].Question}"; //Add # to the quiz in the QuizDB to identify as used
+                    bool isRightAnswer;
+                    if (!shuffledQuiz.Question.Contains("#"))
+                    {
+                        isRightAnswer = UI.GetPlayerQuizAnswer(shuffledQuiz);
 
+                        if (isRightAnswer == false)
+                        {
+                            continue;
+                        }
+                        questionsOfChosenTopic[rndIndex].Question = $"#{questionsOfChosenTopic[rndIndex].Question}"; //Add # to the quiz in the QuizDB to identify as
+                    }
+
+
+                    //break;
                 }
-                break;
-            }      
+
+                
+                //IEnumerable<string> updateTopics
+                topics = topics.Where(item => item != chosenTopic);
+
+
+
+            }
+            
+
             
 
             
