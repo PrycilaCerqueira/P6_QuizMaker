@@ -60,50 +60,52 @@ namespace P6_QuizMaker // Note: actual namespace depends on the project name.
             }
 
 
-            //Topics presentation
-            
-            IEnumerable<string> topics = quizDB.Select(item => item.Topic).Distinct(); //collects all NO repeated topics from the quizBank
-            
-            while (true)
+            //Topic presentation
+            while (true) 
             {
                 UI.PrintGameHeadline(trivia.Title);
+                IEnumerable<string> topics = quizDB.Select(item => item.Topic).Distinct(); //collects all NO repeated topics from the quizBank
+                
                 string chosenTopic = UI.SelectATopic(topics); //prints the list of topics to the player
                 List<Quiz> questionsOfChosenTopic = quizDB.Where(item => item.Topic == chosenTopic).ToList(); //collects all the questions of the same topic
                
+                //TODO: Ask for the first player 
+
                 //Select a random quiz from QuizDB
                 int max = questionsOfChosenTopic.Count();
                 Random rnd = new Random();
 
-                while (true)
+
+                //Quiz presentation
+                while (max >= 1)
                 {
                     int rndIndex = rnd.Next(0, max);
                     Quiz shuffledQuiz = questionsOfChosenTopic[rndIndex]; //Saves aside the rndQuiz to keep the original intact
+                    
                     List<string> shuffledAnswers = shuffledQuiz.Answers.OrderBy(item => rnd.Next()).ToList();//Shuffles the rndQuiz answers before presenting them to the players
                     shuffledQuiz.Answers = shuffledAnswers; //Replaces the original shuffledQuiz answers with the shuffledAnswers, so the order of the answers will always different   
 
-                    bool isRightAnswer;
-                    if (!shuffledQuiz.Question.Contains("#"))
+
+                    //Players' score calc 
+                    bool isRightAnswer = UI.GetPlayerQuizAnswer(shuffledQuiz);
+                    if (isRightAnswer == true)
                     {
-                        isRightAnswer = UI.GetPlayerQuizAnswer(shuffledQuiz);
+                        questionsOfChosenTopic.Remove(shuffledQuiz); //Deletes the quiz from my filtered list (inner while)
+                        quizDB.Remove(shuffledQuiz); //Deletes the quiz from my main list (outer while)
+                        max--;
 
-                        if (isRightAnswer == false)
-                        {
-                            continue;
-                        }
-                        questionsOfChosenTopic[rndIndex].Question = $"#{questionsOfChosenTopic[rndIndex].Question}"; //Add # to the quiz in the QuizDB to identify as
+                        //TODO: Calculate the player's score
                     }
-
-
-                    //break;
+                    //TODO: If the answer wasn't right, replace player for the next one
                 }
 
-                
-                //IEnumerable<string> updateTopics
-                topics = topics.Where(item => item != chosenTopic);
-
-
+                if (topics.Count() < 1)
+                {
+                    break;
+                }
 
             }
+            //TODO: Calculate the final score of the players
             
 
             

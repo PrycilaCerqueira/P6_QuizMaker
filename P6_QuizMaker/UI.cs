@@ -195,6 +195,25 @@ namespace P6_QuizMaker
                 break;
             }
 
+            switch (answerNum)
+            {
+                case 1:
+                    selectedAnswer = item.Answers[0];
+                    break;
+                case 2:
+                    selectedAnswer = item.Answers[1];
+                    break;
+                case 3:
+                    selectedAnswer = item.Answers[2];
+                    break;
+                case 4:
+                    selectedAnswer = item.Answers[3];
+                    break;
+                case 5:
+                    selectedAnswer = item.Answers[4];
+                    break;
+            }
+
             if (selectedAnswer.Contains("*"))
             {
                 return true;
