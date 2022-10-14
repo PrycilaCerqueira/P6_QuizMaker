@@ -69,7 +69,7 @@ namespace P6_QuizMaker // Note: actual namespace depends on the project name.
                 string chosenTopic = UI.SelectATopic(topics); //prints the list of topics to the player
                 List<Quiz> questionsOfChosenTopic = quizDB.Where(item => item.Topic == chosenTopic).ToList(); //collects all the questions of the same topic
                
-                //TODO: Ask for the first player 
+                                                             //TODO: Ask for the first player 
 
                 //Select a random quiz from QuizDB
                 int max = questionsOfChosenTopic.Count();
@@ -94,9 +94,9 @@ namespace P6_QuizMaker // Note: actual namespace depends on the project name.
                         quizDB.Remove(shuffledQuiz); //Deletes the quiz from my main list (outer while)
                         max--;
 
-                        //TODO: Calculate the player's score
+                                                            //TODO: Calculate the player's score
                     }
-                    //TODO: If the answer wasn't right, replace player for the next one
+                                                            //TODO: If the answer wasn't right, replace player for the next one
                 }
 
                 if (topics.Count() < 1)
@@ -107,8 +107,7 @@ namespace P6_QuizMaker // Note: actual namespace depends on the project name.
             }
             //TODO: Calculate the final score of the players
             
-
-            
+        
 
             
             
