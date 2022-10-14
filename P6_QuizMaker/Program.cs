@@ -9,7 +9,7 @@ namespace P6_QuizMaker // Note: actual namespace depends on the project name.
         static void Main(string[] args)
         {
             //Game Info
-            Game trivia = new Game();
+            GameInfo trivia = new GameInfo();
             UI.PrintGameHeadline(trivia.Title);
             UI.PrintGameInstructions(trivia.Description);
             

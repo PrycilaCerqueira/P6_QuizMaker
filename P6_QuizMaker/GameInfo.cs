@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace P6_QuizMaker
 {
-    internal class Game
+    internal class GameInfo
     {
         public string Title = "Tivia Quest";
         public string Description = "It is a game of questions and answers. Win who collects the highest score to the end." +
