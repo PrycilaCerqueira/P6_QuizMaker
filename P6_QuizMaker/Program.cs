@@ -26,17 +26,8 @@ namespace P6_QuizMaker // Note: actual namespace depends on the project name.
             
             //Player Info
             int numOfPlayers = UI.HowManyPlayers();
-            List <Player> playersDB = new List<Player>();
-            for(int nPlayer = 0; nPlayer < numOfPlayers; nPlayer++)
-            {
-                Player players = new Player();
-                players.ID = UI.GetPlayerInput("\nCreate your in-game ID: ");
-                players.Name = UI.GetPlayerInput("Enter your full name: ");
-                players.Score = 0;
-
-                playersDB.Add(players);
-            }
-
+            List<Player> playersDB = UI.GetPlayers(numOfPlayers);
+            
 
             //Topic presentation
             while (true) 

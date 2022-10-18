@@ -142,6 +142,23 @@ namespace P6_QuizMaker
         }
 
 
+
+        public static List<Player> GetPlayers(int numOfPlayers)
+        {
+            List<Player> playersDB = new List<Player>();
+            for (int nPlayer = 0; nPlayer < numOfPlayers; nPlayer++)
+            {
+                Player players = new Player();
+                players.ID = UI.GetPlayerInput("\nCreate your in-game ID: ");
+                players.Name = UI.GetPlayerInput("Enter your full name: ");
+                players.Score = 0;
+
+                playersDB.Add(players);
+            }
+            return playersDB;
+        }
+
+
         /// <summary>
         /// It presents the topic entries to the player and asks them to pick one 
         /// </summary>
