@@ -100,6 +100,30 @@ namespace P6_QuizMaker
 
         }
 
+        public static List<Quiz> GetQuizCards()
+        {
+            List<Quiz> quizCardsDB = new List<Quiz>(); //The quizBank variable holds a list type Quiz
+            for (int numOfQuestions = 0; numOfQuestions < 3; numOfQuestions++) //limits the number of questions that the player will input
+            {
+                Quiz quizCard = new Quiz(); //Created and initiated an instance of the my Quizzes object to be populated by the player 
+                quizCard.Topic = GetPlayerInput("\nEnter the question topic: ");
+                quizCard.Question = GetPlayerInput("Enter the question: ");
+
+                List<string> quizAnswers = new List<string>(); //creates a local list of answers to be added to the object QuizAnswers list later
+
+                quizAnswers.Add(GetPlayerInput("Enter the right answer: "));
+                quizAnswers[0] = $"*{quizAnswers[0]}"; //The correct answers will be identified by the symbol *
+
+                for (int numOfAnswers = 0; numOfAnswers < 4; numOfAnswers++)
+                {
+                    quizAnswers.Add(GetPlayerInput($"Enter an answer: "));
+                }
+                quizCard.Answers.AddRange(quizAnswers); //adds to the Answers Object a list of answers from the quizAnswers string - {0 to 4, etc.}
+                quizCardsDB.Add(quizCard); //adds the quiz instance data entered by the player to the quizBank variable
+            }
+            return quizCardsDB;
+        }
+
         /// <summary>
         /// Confirms whether the player would like to continue the game or not
         /// </summary>

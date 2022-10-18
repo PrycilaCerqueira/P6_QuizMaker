@@ -12,27 +12,9 @@ namespace P6_QuizMaker // Note: actual namespace depends on the project name.
             GameInfo trivia = new GameInfo();
             UI.PrintGameHeadline(trivia.Title);
             UI.PrintGameInstructions(trivia.Description);
-            
+
             //Quiz DB Creation
-            List<Quiz> quizDB = new List<Quiz>(); //The quizBank variable holds a list type Quiz
-            for (int numOfQuestions = 0; numOfQuestions < 3; numOfQuestions++) //limits the number of questions that the player will input
-            {
-                Quiz quiz = new Quiz(); //Created and initiated an instance of the my Quizzes object to be populated by the player 
-                quiz.Topic = UI.GetPlayerInput("\nEnter the question topic: ");
-                quiz.Question = UI.GetPlayerInput("Enter the question: ");
-               
-                List <string> quizAnswers = new List<string>(); //creates a local list of answers to be added to the object QuizAnswers list later
-                
-                quizAnswers.Add(UI.GetPlayerInput("Enter the right answer: "));
-                quizAnswers[0] = $"*{quizAnswers[0]}"; //The correct answers will be identified by the symbol *
-                
-                for (int numOfAnswers = 0; numOfAnswers < 4; numOfAnswers++)
-                {
-                    quizAnswers.Add(UI.GetPlayerInput($"Enter an answer: "));
-                }
-                quiz.Answers.AddRange(quizAnswers); //adds to the Answers Object a list of answers from the quizAnswers string - {0 to 4, etc.}
-                quizDB.Add(quiz); //adds the quiz instance data entered by the player to the quizBank variable
-            }
+            List<Quiz> quizDB = UI.GetQuizCards();
            
             //Game continuity confirmation
             bool confirmation = UI.WantContinueGame();
