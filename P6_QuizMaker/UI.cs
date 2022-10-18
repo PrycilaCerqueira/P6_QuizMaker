@@ -25,7 +25,6 @@ namespace P6_QuizMaker
 
         }
 
-
         /// <summary>
         /// Prints the game description on the console for the players
         /// </summary>
@@ -35,7 +34,6 @@ namespace P6_QuizMaker
             Console.WriteLine(gameDescription);
             Console.WriteLine(); //skips a line
         }
-
 
         /// <summary>
         /// Gets the number of players
@@ -100,6 +98,10 @@ namespace P6_QuizMaker
 
         }
 
+        /// <summary>
+        /// Allows the players to create their Quiz Cards to play the game
+        /// </summary>
+        /// <returns>A list of Quiz Cards</returns>
         public static List<Quiz> GetQuizCards()
         {
             List<Quiz> quizCardsDB = new List<Quiz>(); //The quizBank variable holds a list type Quiz
@@ -141,8 +143,11 @@ namespace P6_QuizMaker
 
         }
 
-
-
+        /// <summary>
+        /// Allows the players to enter their IDs and Names
+        /// </summary>
+        /// <param name="numOfPlayers">Number of Players</param>
+        /// <returns>A list of Players info</returns>
         public static List<Player> GetPlayers(int numOfPlayers)
         {
             List<Player> playersDB = new List<Player>();
