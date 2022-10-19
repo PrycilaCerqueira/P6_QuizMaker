@@ -8,8 +8,9 @@ namespace P6_QuizMaker
 {
     internal class Player
     {
+        public string ID { get; set; }
         public string Name { get; set; }
         public int Score { get; set; }
-        public string ID { get; set; }
+        
     }
 }

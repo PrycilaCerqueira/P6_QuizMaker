@@ -254,16 +254,16 @@ namespace P6_QuizMaker
         }
         
 
-        public static void WhoseTurnIsThis(List<Player> playersDB)
+        public static int WhoseTurnIsThis(List<Player> playersDB)
         {
             string playerTurnID;
-            int playerTurnScore;
+            int turnNum;
 
-            List<string> playersIDs = playersDB.Select(player => player.ID).Distinct().ToList();
+            List<string> displayPlayersIDs = playersDB.Select(p => p.ID).Distinct().ToList();
             Console.WriteLine("\nWhose turn is this? ");
-            for (int turnN = 0; turnN < playersIDs.Count(); turnN++)
+            for (int turnN = 0; turnN < displayPlayersIDs.Count(); turnN++)
             {
-                Console.WriteLine($"{turnN + 1}) {playersIDs[turnN]}");
+                Console.WriteLine($"{turnN + 1}) {displayPlayersIDs[turnN]}");
             }
 
             while (true)
@@ -271,13 +271,12 @@ namespace P6_QuizMaker
                 Console.Write("Enter ID number: ");
                 playerTurnID = Console.ReadLine().Trim();
 
-                int turnNum;
                 if (!int.TryParse(playerTurnID, out turnNum))
                 {
                     Console.WriteLine("This field only accepts a number entry. Try again!");
                     continue;
                 }
-                if (turnNum > playersIDs.Count())
+                if (turnNum > displayPlayersIDs.Count())
                 {
                     Console.WriteLine("The entry is invalid! Pick a valid number.");
                     continue;
@@ -285,20 +284,11 @@ namespace P6_QuizMaker
                 break;
 
             }
-            /*
-            while (true)
-            {
-                
 
-                if (!playersDB.Contains(playerTurnID))
-                {
-                    Console.WriteLine("The user ID is not in the system. Check the spelling.")
-                }
-            } 
-
-            int playerTurnScore;
+            List<Player> currentPlayer = playersDB.Where(p => p.ID == playerTurnID).ToList();
+            int playerTurnScore = currentPlayer.Select(s => s.Score).Single();
             return playerTurnScore;
-            */
+            
         }
     }
 }
