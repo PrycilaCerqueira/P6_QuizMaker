@@ -254,24 +254,25 @@ namespace P6_QuizMaker
         }
         
 
-        public void WhoseTurnIsThis(List<Player> playersDB)
+        public static void WhoseTurnIsThis(List<Player> playersDB)
         {
             string playerTurnID;
-            int turnNum;
             int playerTurnScore;
 
-            IEnumerable<string> playersIDs = playersDB.Select(player => player.ID).Distinct();
-            Console.WriteLine("Whose turn is this? ");
+            List<string> playersIDs = playersDB.Select(player => player.ID).Distinct().ToList();
+            Console.WriteLine("\nWhose turn is this? ");
             for (int turnN = 0; turnN < playersIDs.Count(); turnN++)
             {
-                Console.WriteLine($"{turnN + 1}) {playersIDs}");
+                Console.WriteLine($"{turnN + 1}) {playersIDs[turnN]}");
             }
 
             while (true)
             {
+                Console.Write("Enter ID number: ");
                 playerTurnID = Console.ReadLine().Trim();
 
-                if(int.TryParse(playerTurnID, out turnNum))
+                int turnNum;
+                if (!int.TryParse(playerTurnID, out turnNum))
                 {
                     Console.WriteLine("This field only accepts a number entry. Try again!");
                     continue;
