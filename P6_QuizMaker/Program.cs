@@ -37,9 +37,11 @@ namespace P6_QuizMaker // Note: actual namespace depends on the project name.
                 
                 string chosenTopic = UI.SelectATopic(topics); //prints the list of topics to the player
                 List<Quiz> questionsOfChosenTopic = quizDB.Where(item => item.Topic == chosenTopic).ToList(); //collects all the questions of the same topic
-               
-                                                             //TODO: Ask for the first player 
 
+                //TODO: Ask for the first player
+                //Player playerTurnScore =
+                UI.WhoseTurnIsThis(playersDB);
+                 
                 //Select a random quiz from QuizDB
                 int max = questionsOfChosenTopic.Count();
                 Random rnd = new Random();

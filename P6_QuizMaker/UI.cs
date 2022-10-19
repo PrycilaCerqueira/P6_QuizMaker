@@ -1,4 +1,5 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
 
 namespace P6_QuizMaker
@@ -252,6 +253,52 @@ namespace P6_QuizMaker
 
         }
         
+
+        public void WhoseTurnIsThis(List<Player> playersDB)
+        {
+            string playerTurnID;
+            int turnNum;
+            int playerTurnScore;
+
+            IEnumerable<string> playersIDs = playersDB.Select(player => player.ID).Distinct();
+            Console.WriteLine("Whose turn is this? ");
+            for (int turnN = 0; turnN < playersIDs.Count(); turnN++)
+            {
+                Console.WriteLine($"{turnN + 1}) {playersIDs}");
+            }
+
+            while (true)
+            {
+                playerTurnID = Console.ReadLine().Trim();
+
+                if(int.TryParse(playerTurnID, out turnNum))
+                {
+                    Console.WriteLine("This field only accepts a number entry. Try again!");
+                    continue;
+                }
+                if (turnNum > playersIDs.Count())
+                {
+                    Console.WriteLine("The entry is invalid! Pick a valid number.");
+                    continue;
+                }
+                break;
+
+            }
+            /*
+            while (true)
+            {
+                
+
+                if (!playersDB.Contains(playerTurnID))
+                {
+                    Console.WriteLine("The user ID is not in the system. Check the spelling.")
+                }
+            } 
+
+            int playerTurnScore;
+            return playerTurnScore;
+            */
+        }
     }
 }
 
