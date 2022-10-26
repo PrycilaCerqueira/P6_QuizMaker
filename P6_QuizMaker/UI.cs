@@ -252,8 +252,12 @@ namespace P6_QuizMaker
 
 
         }
-        
 
+        /// <summary>
+        /// Allows the player to select whose turn is it
+        /// </summary>
+        /// <param name="playersDB">List of players</param>
+        /// <returns>the player's turn info </returns>
         public static Player WhoseTurnIsThis(List<Player> playersDB)
         {
             string playerTurnID;
