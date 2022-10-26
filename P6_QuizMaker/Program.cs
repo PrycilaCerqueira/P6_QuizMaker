@@ -58,16 +58,16 @@ namespace P6_QuizMaker // Note: actual namespace depends on the project name.
 
                     //Players' score calc 
                     bool isRightAnswer = UI.GetPlayerQuizAnswer(shuffledQuiz);
-                    if (isRightAnswer == true)
+                    if (isRightAnswer == false) //If the answer wasn't right, replace player for the next one
                     {
-                        questionsOfChosenTopic.Remove(shuffledQuiz); //Deletes the quiz from my filtered list (inner while)
-                        quizDB.Remove(shuffledQuiz); //Deletes the quiz from my main list (outer while)
-                        max--;
-
-                        //Calculates the player's score
-                        currentPlayer.Score = currentPlayer.Score + 10;
+                        break;
                     }
-                                                            //TODO: If the answer wasn't right, replace player for the next one
+                    
+                    currentPlayer.Score = currentPlayer.Score + 10;//Calculates the player's score
+                    questionsOfChosenTopic.Remove(shuffledQuiz); //Deletes the quiz from my filtered list (inner while)
+                    quizDB.Remove(shuffledQuiz); //Deletes the quiz from the main list (outer while)
+                    max--;                  
+                                                                   //TODO: If the answer wasn't right, replace player for the next one
                 }
 
 
