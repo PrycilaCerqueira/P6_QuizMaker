@@ -286,7 +286,7 @@ namespace P6_QuizMaker
             }
 
             Player currentPlayer = playersDB.ElementAt(turnNum - 1); //Gets the player info based on the list index because playerTurnID is a number at this point
-            return currentPlayer; //returns the currentPlayer info;
+            return currentPlayer; //returns the currentPlayer info
             
         }
     }

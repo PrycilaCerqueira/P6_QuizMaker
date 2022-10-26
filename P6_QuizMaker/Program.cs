@@ -64,8 +64,7 @@ namespace P6_QuizMaker // Note: actual namespace depends on the project name.
                         quizDB.Remove(shuffledQuiz); //Deletes the quiz from my main list (outer while)
                         max--;
 
-                                                            //TODO: Calculate the player's score
-                        //playerTurnScore = playerTurnScore + 10;
+                        //Calculates the player's score
                         currentPlayer.Score = currentPlayer.Score + 10;
                     }
                                                             //TODO: If the answer wasn't right, replace player for the next one
