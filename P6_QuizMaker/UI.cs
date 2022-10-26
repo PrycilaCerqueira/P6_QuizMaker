@@ -242,7 +242,7 @@ namespace P6_QuizMaker
                 break;
             }
 
-            selectedAnswer = item.Answers[answerNum - 1];
+            selectedAnswer = item.Answers[answerNum - 1]; //Reference the menu number to the question (string)
            
             if (selectedAnswer.Contains("*"))
             {
@@ -254,7 +254,7 @@ namespace P6_QuizMaker
         }
         
 
-        public static int WhoseTurnIsThis(List<Player> playersDB)
+        public static Player WhoseTurnIsThis(List<Player> playersDB)
         {
             string playerTurnID;
             int turnNum;
@@ -285,9 +285,8 @@ namespace P6_QuizMaker
 
             }
 
-            List<Player> currentPlayer = playersDB.Where(p => p.ID == playerTurnID).ToList();
-            int playerTurnScore = currentPlayer.Select(s => s.Score).Single();
-            return playerTurnScore;
+            Player currentPlayer = playersDB.ElementAt(turnNum - 1); //Gets the player info based on the list index because playerTurnID is a number at this point
+            return currentPlayer; //returns the currentPlayer info;
             
         }
     }
