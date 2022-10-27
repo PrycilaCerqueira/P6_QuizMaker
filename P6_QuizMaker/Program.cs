@@ -67,7 +67,7 @@ namespace P6_QuizMaker // Note: actual namespace depends on the project name.
                     questionsOfChosenTopic.Remove(shuffledQuiz); //Deletes the quiz from my filtered list (inner while)
                     quizDB.Remove(shuffledQuiz); //Deletes the quiz from the main list (outer while)
                     max--;                  
-                                                                   //TODO: If the answer wasn't right, replace player for the next one
+                                                                   
                 }
 
 
@@ -77,13 +77,10 @@ namespace P6_QuizMaker // Note: actual namespace depends on the project name.
                 }
 
             }
-            //TODO: Calculate the final score of the players
-            
-        
 
-            
-            
-      
+            //TODO: Calculate the final score of the players
+            UI.PrintGameHeadline(trivia.Title); 
+            UI.PrintPlayersFinalScore(playersDB);      
 
         }
     }

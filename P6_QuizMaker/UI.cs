@@ -293,6 +293,20 @@ namespace P6_QuizMaker
             return currentPlayer; //returns the currentPlayer info
             
         }
+
+        /// <summary>
+        /// Prints the players' final scores on the console
+        /// </summary>
+        /// <param name="playersDB">List of players' info</param>
+        public static void PrintPlayersFinalScore(List<Player> playersDB)
+        {
+            Console.WriteLine("*** Players' Scores ***");
+            foreach (var player in playersDB)
+            {
+                Console.WriteLine($"\n  Player name: {player.Name}\n  Final score: {player.Score}");
+            }
+
+        }
     }
 }
 
