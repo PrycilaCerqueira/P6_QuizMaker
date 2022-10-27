@@ -172,7 +172,7 @@ namespace P6_QuizMaker
         /// <returns> The selected topic</returns>
         public static string SelectATopic(IEnumerable<string> topics)
         {
-            Console.WriteLine("Here are the topics of your questions: ");
+            Console.WriteLine("\nHere are the topics of your questions: ");
             foreach (var topic in topics)
             {
                 Console.WriteLine($" \u00bb {topic}");
@@ -291,7 +291,6 @@ namespace P6_QuizMaker
 
             Player currentPlayer = playersDB.ElementAt(turnNum - 1); //Gets the player info based on the list index because playerTurnID is a number at this point
             return currentPlayer; //returns the currentPlayer info
-            
         }
 
         /// <summary>
