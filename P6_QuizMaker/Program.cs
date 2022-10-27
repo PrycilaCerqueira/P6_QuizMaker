@@ -78,7 +78,7 @@ namespace P6_QuizMaker // Note: actual namespace depends on the project name.
 
             }
 
-            //TODO: Calculate the final score of the players
+            //Present the final scores
             UI.PrintGameHeadline(trivia.Title); 
             UI.PrintPlayersFinalScore(playersDB);      
 
