@@ -8,6 +8,8 @@ namespace P6_QuizMaker // Note: actual namespace depends on the project name.
     {
         static void Main(string[] args)
         {
+            //TODO: BONUS: find a way to store the Q/A in a file.
+
             bool confirmation;
 
             do
