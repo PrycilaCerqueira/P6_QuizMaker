@@ -106,7 +106,7 @@ namespace P6_QuizMaker
         public static List<Quiz> GetQuizCards()
         {
             List<Quiz> quizCardsDB = new List<Quiz>(); //The quizBank variable holds a list type Quiz
-            for (int numOfQuestions = 0; numOfQuestions < 20; numOfQuestions++) //limits the number of questions that the player will input
+            for (int numOfQuestions = 0; numOfQuestions < 3; numOfQuestions++) //limits the number of questions that the player will input
             {
                 Quiz quizCard = new Quiz(); //Created and initiated an instance of the my Quizzes object to be populated by the player 
                 quizCard.Topic = GetPlayerInput("\nEnter the question topic: ");
