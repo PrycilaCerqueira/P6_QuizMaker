@@ -21,7 +21,7 @@ namespace P6_QuizMaker // Note: actual namespace depends on the project name.
 
                 //Quiz DB Creation
                 List<Quiz> quizDB = UI.GetQuizCards();
-                CSV.ExportFile(quizDB);
+                XML.ExportFile(quizDB);
 
                 //Game continuity confirmation
                 confirmation = UI.WantContinueGame();

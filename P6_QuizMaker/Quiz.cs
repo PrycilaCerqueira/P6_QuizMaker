@@ -7,7 +7,7 @@ using System.Xml.Linq;
 
 namespace P6_QuizMaker
 {
-    internal class Quiz
+    public class Quiz
     {
         public string Topic { get; set; }
         public string Question {get; set;}     
