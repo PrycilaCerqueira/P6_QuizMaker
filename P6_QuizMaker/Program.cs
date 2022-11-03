@@ -8,9 +8,10 @@ namespace P6_QuizMaker // Note: actual namespace depends on the project name.
     {
         static void Main(string[] args)
         {
-            //TODO: BONUS: find a way to store the Q/A in a file.
+            //TODO: BONUS: Update stored the Q/A in a file and restore them.
 
             bool confirmation;
+            Random rnd = new Random();
 
             do
             {
@@ -47,7 +48,6 @@ namespace P6_QuizMaker // Note: actual namespace depends on the project name.
 
                     //Select a random quiz from QuizDB
                     int max = questionsOfChosenTopic.Count();
-                    Random rnd = new Random();
 
 
                     //Quiz presentation
