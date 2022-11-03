@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace P6_QuizMaker
 {
+
     internal class GameInfo
     {
         public string Title = "Tivia Quest";
