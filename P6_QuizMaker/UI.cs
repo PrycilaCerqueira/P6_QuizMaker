@@ -106,7 +106,7 @@ namespace P6_QuizMaker
         public static List<Quiz> GetQuizCards()
         {
             List<Quiz> quizCardsDB = new List<Quiz>(); //The quizBank variable holds a list type Quiz
-            for (int numOfQuestions = 0; numOfQuestions < 20; numOfQuestions++) //limits the number of questions that the player will input
+            for (int numOfQuestions = 0; numOfQuestions < 3; numOfQuestions++) //limits the number of questions that the player will input
             {
                 Quiz quizCard = new Quiz(); //Created and initiated an instance of the my Quizzes object to be populated by the player 
                 quizCard.Topic = GetPlayerInput("\nEnter the question topic: ");
@@ -168,8 +168,9 @@ namespace P6_QuizMaker
         /// <summary>
         /// It presents the topic entries to the player and asks them to pick one 
         /// </summary>
-        /// <param name="topics">List of topics</param>
+        /// <param name="dataCollection">List of topics</param>
         /// <returns> The selected topic</returns>
+        /*
         public static string SelectATopic(IEnumerable<string> topics)
         {
             Console.WriteLine("\nHere are the topics of your questions: ");
@@ -193,6 +194,43 @@ namespace P6_QuizMaker
             }
             return selectedTopic;
         }
+        */
+        public static string SelectATopic(List<string> dataCollection)
+        {
+            string selectedOption;
+            int selectedOptionNumber;
+
+            //List<string> displayPlayersIDs = playersDB.Select(p => p.ID).Distinct().ToList();
+            Console.WriteLine("\nSelect one option from: ");
+            for (int option = 0; option < dataCollection.Count(); option++)
+            {
+                Console.WriteLine($"{option + 1}) {dataCollection[option]}");
+            }
+
+            while (true)
+            {
+                Console.Write("Enter option number: ");
+                selectedOption = Console.ReadLine().Trim();
+
+                if (!int.TryParse(selectedOption, out selectedOptionNumber))
+                {
+                    Console.WriteLine("This field only accepts a number entry. Try again!");
+                    continue;
+                }
+                if (selectedOptionNumber > dataCollection.Count())
+                {
+                    Console.WriteLine("The entry is invalid! Pick a valid number.");
+                    continue;
+                }
+                break;
+
+            }
+
+            var currentPlayer = dataCollection.ElementAt(selectedOptionNumber - 1); //Gets the player info based on the list index because playerTurnID is a number at this point
+            return currentPlayer; //returns the currentPlayer info
+        }
+
+
 
         /// <summary>
         /// Prints the Quiz to the player and asks for their answer
