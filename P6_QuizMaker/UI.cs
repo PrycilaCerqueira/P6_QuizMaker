@@ -149,7 +149,7 @@ namespace P6_QuizMaker
         /// </summary>
         /// <param name="numOfPlayers">Number of Players</param>
         /// <returns>A list of Players info</returns>
-        public static List<Player> GetPlayers(int numOfPlayers)
+        public static List<Player> GetPlayersInfo(int numOfPlayers)
         {
             List<Player> playersDB = new List<Player>();
             for (int nPlayer = 0; nPlayer < numOfPlayers; nPlayer++)
@@ -168,56 +168,31 @@ namespace P6_QuizMaker
         /// <summary>
         /// It presents the topic entries to the player and asks them to pick one 
         /// </summary>
-        /// <param name="dataCollection">List of topics</param>
+        /// <param name="topics">List of topics</param>
         /// <returns> The selected topic</returns>
-        /*
-        public static string SelectATopic(IEnumerable<string> topics)
+        
+        public static string SelectATopic(List<string> topics)
         {
-            Console.WriteLine("\nHere are the topics of your questions: ");
-            foreach (var topic in topics)
-            {
-                Console.WriteLine($" \u00bb {topic}");
-            }
+            string selectTopic;
+            int selectTopicNumber;
 
-            string selectedTopic;
-            while (true)
-            {
-                Console.WriteLine("\nWhich topic would you like to pick? ");
-                selectedTopic = Console.ReadLine().Trim().ToUpper();
-
-                if (!topics.Contains(selectedTopic))
-                {
-                    Console.WriteLine("Your choice isn't listed above. Try again!");
-                    continue;
-                }
-                break;
-            }
-            return selectedTopic;
-        }
-        */
-        public static string SelectATopic(List<string> dataCollection)
-        {
-            string selectedOption;
-            int selectedOptionNumber;
-
-            //List<string> displayPlayersIDs = playersDB.Select(p => p.ID).Distinct().ToList();
             Console.WriteLine("\nSelect one option from: ");
-            for (int option = 0; option < dataCollection.Count(); option++)
+            for (int top = 0; top < topics.Count(); top++)
             {
-                Console.WriteLine($"{option + 1}) {dataCollection[option]}");
+                Console.WriteLine($"{top + 1}) {topics[top]}");
             }
 
             while (true)
             {
                 Console.Write("Enter option number: ");
-                selectedOption = Console.ReadLine().Trim();
+                selectTopic = Console.ReadLine().Trim();
 
-                if (!int.TryParse(selectedOption, out selectedOptionNumber))
+                if (!int.TryParse(selectTopic, out selectTopicNumber))
                 {
                     Console.WriteLine("This field only accepts a number entry. Try again!");
                     continue;
                 }
-                if (selectedOptionNumber > dataCollection.Count())
+                if (selectTopicNumber > topics.Count())
                 {
                     Console.WriteLine("The entry is invalid! Pick a valid number.");
                     continue;
@@ -226,7 +201,7 @@ namespace P6_QuizMaker
 
             }
 
-            var currentPlayer = dataCollection.ElementAt(selectedOptionNumber - 1); //Gets the player info based on the list index because playerTurnID is a number at this point
+            var currentPlayer = topics.ElementAt(selectTopicNumber - 1); //Gets the player info based on the list index because playerTurnID is a number at this point
             return currentPlayer; //returns the currentPlayer info
         }
 
