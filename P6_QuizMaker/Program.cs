@@ -25,28 +25,26 @@ namespace P6_QuizMaker // Note: actual namespace depends on the project name.
                 XML.ExportFile(quizDB);
 
                 //Player Info
+                UI.PrintGameHeadline(trivia.Title);
                 int numOfPlayers = UI.HowManyPlayers();
                 List<Player> playersDB = UI.GetPlayersInfo(numOfPlayers);
 
                 //Topic presentation
-                while (true)
+                do
                 {
                     UI.PrintGameHeadline(trivia.Title);
-                    
-                    List<string> topics = quizDB.Select(item => item.Topic).Distinct().ToList(); //collects all NO repeated topics from the quizBank
-                    if (topics.Count() < 1)
-                    {
-                        break;
-                    }
+                    //Player currentPlayer = UI.WhoseTurnIsThis(playersDB); //Confirms the name of the player's turn
+                    Player currentPlayer = UI.SelectOption<Player>(playersDB);
 
-                    string chosenTopic = UI.SelectATopic(topics); //prints the list of topics to the player
+                    List<string> topics = quizDB.Select(item => item.Topic).Distinct().ToList(); //collects all NO repeated topics from the quizBank
+                    //string chosenTopic = UI.SelectATopic(topics); //prints the list of topics to the player
+                    string chosenTopic = UI.SelectOption<string>(topics);
                     List<Quiz> questionsOfChosenTopic = quizDB.Where(item => item.Topic == chosenTopic).ToList(); //collects all the questions of the same topic
 
-                    Player currentPlayer = UI.WhoseTurnIsThis(playersDB); //Confirms the name of the player's turn
                     int max = questionsOfChosenTopic.Count();
 
                     //Quiz presentation
-                    while (max >= 1)
+                    do
                     {
                         int rndIndex = rnd.Next(0, max);
                         Quiz shuffledQuiz = questionsOfChosenTopic[rndIndex]; //Saves aside the rndQuiz to keep the original intact
@@ -67,10 +65,10 @@ namespace P6_QuizMaker // Note: actual namespace depends on the project name.
                         quizDB.Remove(shuffledQuiz); //Deletes the quiz from the main list (outer while)
                         max--;
 
-                    }
+                    } while (max >= 1);
 
 
-                }
+                }while (quizDB.Count > 0);
 
                 //Present the final scores
                 UI.PrintGameHeadline(trivia.Title);

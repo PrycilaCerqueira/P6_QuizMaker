@@ -145,7 +145,7 @@ namespace P6_QuizMaker
         }
 
         /// <summary>
-        /// Allows the players to enter their IDs and Names
+        /// Allows the players to enter their Nicknames and Names
         /// </summary>
         /// <param name="numOfPlayers">Number of Players</param>
         /// <returns>A list of Players info</returns>
@@ -155,7 +155,7 @@ namespace P6_QuizMaker
             for (int nPlayer = 0; nPlayer < numOfPlayers; nPlayer++)
             {
                 Player players = new Player();
-                players.ID = UI.GetPlayerInput("\nCreate your in-game ID: ");
+
                 players.Name = UI.GetPlayerInput("Enter your full name: ");
                 players.Score = 0;
 
@@ -165,12 +165,12 @@ namespace P6_QuizMaker
         }
 
 
+        /*
         /// <summary>
         /// It presents the topic entries to the player and asks them to pick one 
         /// </summary>
         /// <param name="topics">List of topics</param>
         /// <returns> The selected topic</returns>
-        
         public static string SelectATopic(List<string> topics)
         {
             string selectTopic;
@@ -204,6 +204,7 @@ namespace P6_QuizMaker
             var currentPlayer = topics.ElementAt(selectTopicNumber - 1); //Gets the player info based on the list index because playerTurnID is a number at this point
             return currentPlayer; //returns the currentPlayer info
         }
+        */
 
 
 
@@ -266,6 +267,7 @@ namespace P6_QuizMaker
 
         }
 
+        /*
         /// <summary>
         /// Allows the player to select whose turn is it
         /// </summary>
@@ -276,7 +278,7 @@ namespace P6_QuizMaker
             string playerTurnID;
             int turnNum;
 
-            List<string> displayPlayersIDs = playersDB.Select(p => p.ID).Distinct().ToList();
+            List<string> displayPlayersIDs = playersDB.Select(p => p.Nickname).Distinct().ToList();
             Console.WriteLine("\nWhose turn is this? ");
             for (int turnN = 0; turnN < displayPlayersIDs.Count(); turnN++)
             {
@@ -305,6 +307,59 @@ namespace P6_QuizMaker
             Player currentPlayer = playersDB.ElementAt(turnNum - 1); //Gets the player info based on the list index because playerTurnID is a number at this point
             return currentPlayer; //returns the currentPlayer info
         }
+        */
+
+        public static T SelectOption<T>(List<T> genericList) //Generic Method
+        {
+            
+            List<T> FilteredList = new List<T>();
+            string strValue;
+            int numValue;
+
+            if (typeof(T) == typeof(Player))
+            {
+                
+                FilteredList = genericList.Select(p => p.Name).Distinct().ToList();
+                
+                for (int i = 0; i < FilteredList.Count(); i++)
+                {
+                    Console.WriteLine($"{i + 1}) {FilteredList[i]}");
+                }
+                Console.WriteLine("\nWhose turn is this? ");
+            }
+            else if (typeof(T) == typeof(String))
+            {
+                for (int i = 0; i < FilteredList.Count(); i++)
+                {
+                    Console.WriteLine($"{i + 1}) {FilteredList[i]}");
+                }
+                Console.WriteLine("\nWhich topic you chose? ");
+
+            }
+
+            while (true)
+            {
+                Console.Write("Enter number: ");
+                strValue = Console.ReadLine().Trim();
+
+                if (!int.TryParse(strValue, out numValue))
+                {
+                    Console.WriteLine("This field only accepts a number entry. Try again!");
+                    continue;
+                }
+                if (numValue > FilteredList.Count())
+                {
+                    Console.WriteLine("The entry is invalid! Pick a valid number.");
+                    continue;
+                }
+                break;
+
+            }
+
+            var currentValue = genericList.ElementAt(numValue - 1); //Gets the player info based on the list index because playerTurnID is a number at this point
+            return currentValue; //returns the currentPlayer info
+        }
+
 
         /// <summary>
         /// Prints the players' final scores on the console
