@@ -10,7 +10,7 @@ namespace P6_QuizMaker // Note: actual namespace depends on the project name.
         {
             //TODO: BONUS: Update stored the Q/A in a file and restore them.
 
-            bool confirmation;
+            bool continuePlay;
             Random rnd = new Random();
 
             do
@@ -73,9 +73,9 @@ namespace P6_QuizMaker // Note: actual namespace depends on the project name.
                 //Present the final scores
                 UI.PrintGameHeadline(trivia.Title);
                 UI.PrintPlayersFinalScore(playersDB);
-                confirmation = UI.WantContinueGame();
+                continuePlay = UI.WantContinueGame();
 
-            } while (confirmation == false);
+            } while (continuePlay == false);
 
         }
     }
