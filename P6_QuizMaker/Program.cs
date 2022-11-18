@@ -1,8 +1,4 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-
-namespace P6_QuizMaker // Note: actual namespace depends on the project name.
+﻿namespace P6_QuizMaker // Note: actual namespace depends on the project name.
 {
     internal class Program
     {

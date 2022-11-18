@@ -1,8 +1,4 @@
-﻿using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Security.Cryptography;
-
-namespace P6_QuizMaker
+﻿namespace P6_QuizMaker
 {
     internal class UI
     {
