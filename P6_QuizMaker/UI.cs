@@ -156,7 +156,7 @@ namespace P6_QuizMaker
             {
                 Player players = new Player();
 
-                players.Name = UI.GetPlayerInput("Enter your full name: ");
+                players.Name = UI.GetPlayerInput("Enter your name: ");
                 players.Score = 0;
 
                 playersDB.Add(players);
@@ -311,27 +311,26 @@ namespace P6_QuizMaker
 
         public static T SelectOption<T>(List<T> genericList) //Generic Method
         {
-            
-            List<T> FilteredList = new List<T>();
+
+            List<string> filteredList = new List<string>();
             string strValue;
             int numValue;
 
             if (typeof(T) == typeof(Player))
             {
+                filteredList = genericList.Select(p => p.Name).Distinct().ToList();
                 
-                FilteredList = genericList.Select(p => p.Name).Distinct().ToList();
-                
-                for (int i = 0; i < FilteredList.Count(); i++)
+                for (int i = 0; i < filteredList.Count(); i++)
                 {
-                    Console.WriteLine($"{i + 1}) {FilteredList[i]}");
+                    Console.WriteLine($"{i + 1}) {filteredList[i]}");
                 }
                 Console.WriteLine("\nWhose turn is this? ");
             }
             else if (typeof(T) == typeof(String))
             {
-                for (int i = 0; i < FilteredList.Count(); i++)
+                for (int i = 0; i < filteredList.Count(); i++)
                 {
-                    Console.WriteLine($"{i + 1}) {FilteredList[i]}");
+                    Console.WriteLine($"{i + 1}) {filteredList[i]}");
                 }
                 Console.WriteLine("\nWhich topic you chose? ");
 
@@ -347,7 +346,7 @@ namespace P6_QuizMaker
                     Console.WriteLine("This field only accepts a number entry. Try again!");
                     continue;
                 }
-                if (numValue > FilteredList.Count())
+                if (numValue > filteredList.Count())
                 {
                     Console.WriteLine("The entry is invalid! Pick a valid number.");
                     continue;
