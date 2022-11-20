@@ -29,11 +29,9 @@
                 do
                 {
                     UI.PrintGameHeadline(trivia.Title);
-                    //Player currentPlayer = UI.WhoseTurnIsThis(playersDB); //Confirms the name of the player's turn
                     Player currentPlayer = UI.SelectOption<Player>(playersDB);
 
                     List<string> topics = quizDB.Select(item => item.Topic).Distinct().ToList(); //collects all NO repeated topics from the quizBank
-                    //string chosenTopic = UI.SelectATopic(topics); //prints the list of topics to the player
                     string chosenTopic = UI.SelectOption<string>(topics);
                     List<Quiz> questionsOfChosenTopic = quizDB.Where(item => item.Topic == chosenTopic).ToList(); //collects all the questions of the same topic
 

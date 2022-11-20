@@ -160,50 +160,6 @@
             return playersDB;
         }
 
-
-        /*
-        /// <summary>
-        /// It presents the topic entries to the player and asks them to pick one 
-        /// </summary>
-        /// <param name="topics">List of topics</param>
-        /// <returns> The selected topic</returns>
-        public static string SelectATopic(List<string> topics)
-        {
-            string selectTopic;
-            int selectTopicNumber;
-
-            Console.WriteLine("\nSelect one option from: ");
-            for (int top = 0; top < topics.Count(); top++)
-            {
-                Console.WriteLine($"{top + 1}) {topics[top]}");
-            }
-
-            while (true)
-            {
-                Console.Write("Enter option number: ");
-                selectTopic = Console.ReadLine().Trim();
-
-                if (!int.TryParse(selectTopic, out selectTopicNumber))
-                {
-                    Console.WriteLine("This field only accepts a number entry. Try again!");
-                    continue;
-                }
-                if (selectTopicNumber > topics.Count())
-                {
-                    Console.WriteLine("The entry is invalid! Pick a valid number.");
-                    continue;
-                }
-                break;
-
-            }
-
-            var currentPlayer = topics.ElementAt(selectTopicNumber - 1); //Gets the player info based on the list index because playerTurnID is a number at this point
-            return currentPlayer; //returns the currentPlayer info
-        }
-        */
-
-
-
         /// <summary>
         /// Prints the Quiz to the player and asks for their answer
         /// </summary>
@@ -263,48 +219,12 @@
 
         }
 
-        /*
         /// <summary>
-        /// Allows the player to select whose turn is it
+        /// Allows the player to select an option from the listed menu
         /// </summary>
-        /// <param name="playersDB">List of players</param>
-        /// <returns>the player's turn info </returns>
-        public static Player WhoseTurnIsThis(List<Player> playersDB)
-        {
-            string playerTurnID;
-            int turnNum;
-
-            List<string> displayPlayersIDs = playersDB.Select(p => p.Nickname).Distinct().ToList();
-            Console.WriteLine("\nWhose turn is this? ");
-            for (int turnN = 0; turnN < displayPlayersIDs.Count(); turnN++)
-            {
-                Console.WriteLine($"{turnN + 1}) {displayPlayersIDs[turnN]}");
-            }
-
-            while (true)
-            {
-                Console.Write("Enter ID number: ");
-                playerTurnID = Console.ReadLine().Trim();
-
-                if (!int.TryParse(playerTurnID, out turnNum))
-                {
-                    Console.WriteLine("This field only accepts a number entry. Try again!");
-                    continue;
-                }
-                if (turnNum > displayPlayersIDs.Count())
-                {
-                    Console.WriteLine("The entry is invalid! Pick a valid number.");
-                    continue;
-                }
-                break;
-
-            }
-
-            Player currentPlayer = playersDB.ElementAt(turnNum - 1); //Gets the player info based on the list index because playerTurnID is a number at this point
-            return currentPlayer; //returns the currentPlayer info
-        }
-        */
-
+        /// <typeparam name="T">Data type: Player or String</typeparam>
+        /// <param name="genericList">List<Player> or List<string></param>
+        /// <returns>Selected option</returns>
         public static T SelectOption<T>(List<T> genericList) //Generic Method
         {
 
@@ -314,7 +234,7 @@
 
             if (typeof(T) == typeof(Player))
             {
-                filteredList = genericList.Cast<Player>().Select(p => p.Name).Distinct().ToList();
+                filteredList = genericList.Cast<Player>().Select(p => p.Name).Distinct().ToList(); //explicity sets the generic list .Cast to be Player to allow access its properties such as .Name   
                                
                 Console.WriteLine("\nWhose turn is this? ");
                 for (int i = 0; i < filteredList.Count(); i++)
@@ -356,8 +276,8 @@
 
             }
 
-            var currentValue = genericList.ElementAt(numValue - 1); //Gets the player info based on the list index because playerTurnID is a number at this point
-            return currentValue; //returns the currentPlayer info
+            var currentValue = genericList.ElementAt(numValue - 1); //Gets the generic list info based on the list index because the playerName or the ChosenTopic is an element at this position
+            return currentValue; //returns the current element
         }
 
 
