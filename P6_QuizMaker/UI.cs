@@ -314,21 +314,21 @@
 
             if (typeof(T) == typeof(Player))
             {
-                filteredList = genericList.Select(p => p.Name).Distinct().ToList();
-                
-                for (int i = 0; i < filteredList.Count(); i++)
-                {
-                    Console.WriteLine($"{i + 1}) {filteredList[i]}");
-                }
+                filteredList = genericList.Cast<Player>().Select(p => p.Name).Distinct().ToList();
+                               
                 Console.WriteLine("\nWhose turn is this? ");
-            }
-            else if (typeof(T) == typeof(String))
-            {
                 for (int i = 0; i < filteredList.Count(); i++)
                 {
                     Console.WriteLine($"{i + 1}) {filteredList[i]}");
                 }
+            }
+            else if (typeof(T) == typeof(string))
+            {
                 Console.WriteLine("\nWhich topic you chose? ");
+                for (int i = 0; i < genericList.Count(); i++)
+                {
+                    Console.WriteLine($"{i + 1}) {genericList[i]}");
+                }
 
             }
 
@@ -342,7 +342,12 @@
                     Console.WriteLine("This field only accepts a number entry. Try again!");
                     continue;
                 }
-                if (numValue > filteredList.Count())
+                if (numValue > filteredList.Count() && typeof(T) == typeof(Player))
+                {
+                    Console.WriteLine("The entry is invalid! Pick a valid number.");
+                    continue;
+                }
+                if (numValue > genericList.Count() && typeof(T) == typeof(string))
                 {
                     Console.WriteLine("The entry is invalid! Pick a valid number.");
                     continue;
