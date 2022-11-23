@@ -227,57 +227,51 @@
         /// <returns>Selected option</returns>
         public static T SelectOption<T>(List<T> genericList) //Generic Method
         {
-
-            List<string> filteredList = new List<string>();
-            string strValue;
-            int numValue;
-
+            List<string> filteredList = new();
+            string question = "Which option you chose?"; // default question for strings
             if (typeof(T) == typeof(Player))
             {
-                filteredList = genericList.Cast<Player>().Select(p => p.Name).Distinct().ToList(); //explicity sets the generic list .Cast to be Player to allow access its properties such as .Name   
-                               
-                Console.WriteLine("\nWhose turn is this? ");
-                for (int i = 0; i < filteredList.Count(); i++)
-                {
-                    Console.WriteLine($"{i + 1}) {filteredList[i]}");
-                }
+                filteredList = genericList.Cast<Player>().Select(p => p.Name).Distinct().ToList();
+                question = "Whose turn is this?";
             }
-            else if (typeof(T) == typeof(string))
+            if (typeof(T) == typeof(Quiz))
             {
-                Console.WriteLine("\nWhich topic you chose? ");
-                for (int i = 0; i < genericList.Count(); i++)
-                {
-                    Console.WriteLine($"{i + 1}) {genericList[i]}");
-                }
-
+                filteredList = genericList.Cast<Quiz>().Select(p => p.Topic).Distinct().ToList();
+                question = "Which topic you chose?";
+            }
+            else if (typeof(T) == typeof(String))
+            {
+                filteredList = genericList.Cast<String>().ToList();
             }
 
+            Console.WriteLine();
+            for (int i = 0; i < filteredList.Count; i++)
+            {
+                Console.WriteLine($"{i + 1}) {filteredList[i]}");
+            }
+            Console.WriteLine(question);
+
+            string strValue;
+            int numValue;
             while (true)
             {
                 Console.Write("Enter number: ");
                 strValue = Console.ReadLine().Trim();
-
                 if (!int.TryParse(strValue, out numValue))
                 {
                     Console.WriteLine("This field only accepts a number entry. Try again!");
                     continue;
                 }
-                if (numValue > filteredList.Count() && typeof(T) == typeof(Player))
-                {
-                    Console.WriteLine("The entry is invalid! Pick a valid number.");
-                    continue;
-                }
-                if (numValue > genericList.Count() && typeof(T) == typeof(string))
+                if (numValue > filteredList.Count)
                 {
                     Console.WriteLine("The entry is invalid! Pick a valid number.");
                     continue;
                 }
                 break;
-
             }
 
-            var currentValue = genericList.ElementAt(numValue - 1); //Gets the generic list info based on the list index because the playerName or the ChosenTopic is an element at this position
-            return currentValue; //returns the current element
+            var currentValue = genericList.ElementAt(numValue - 1); 
+            return currentValue; 
         }
 
 

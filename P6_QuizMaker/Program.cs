@@ -31,9 +31,8 @@
                     UI.PrintGameHeadline(trivia.Title);
                     Player currentPlayer = UI.SelectOption<Player>(playersDB);
 
-                    List<string> topics = quizDB.Select(item => item.Topic).Distinct().ToList(); //collects all NO repeated topics from the quizBank
-                    string chosenTopic = UI.SelectOption<string>(topics);
-                    List<Quiz> questionsOfChosenTopic = quizDB.Where(item => item.Topic == chosenTopic).ToList(); //collects all the questions of the same topic
+                    Quiz chosenTopic = UI.SelectOption<Quiz>(quizDB);
+                    List<Quiz> questionsOfChosenTopic = quizDB.Where(item => item.Topic == chosenTopic.Topic).ToList();
 
                     int max = questionsOfChosenTopic.Count();
 
