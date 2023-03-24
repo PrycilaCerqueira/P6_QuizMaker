@@ -18,5 +18,12 @@ namespace P6_QuizMaker
                 serializer.Serialize(writer, quizDB);
             }
         }
+
+        public static void ImportFile()
+        {
+
+        }
+
+
     }
 }
