@@ -12,7 +12,8 @@ namespace P6_QuizMaker
         public static void ExportFile(List<Quiz> quizDB)
         {
             XmlSerializer serializer = new XmlSerializer(typeof(List<Quiz>));
-            using (StreamWriter writer = new StreamWriter(@"C:\Users\pry_p\source\repos\P6_QuizMaker\QuizCards.xml"))
+            string username = Environment.UserName;
+            using (StreamWriter writer = new StreamWriter($@"C:\Users\{username}\Downloads\QuizCards.xml"))
             {
                 serializer.Serialize(writer, quizDB);
             }
