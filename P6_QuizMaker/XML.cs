@@ -21,7 +21,11 @@ namespace P6_QuizMaker
 
         public static void ImportFile()
         {
-
+            XmlSerializer serializer = new XmlSerializer(typeof(ArrayOfQuiz));
+            using (StringReader reader = new StringReader(xml))
+            {
+                var test = (ArrayOfQuiz)serializer.Deserialize(reader);
+            }
         }
 
 
