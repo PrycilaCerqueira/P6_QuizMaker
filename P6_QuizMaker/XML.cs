@@ -22,11 +22,11 @@ namespace P6_QuizMaker
 
         public static List<Quiz> ImportFile()
         {
-            XmlSerializer serializer = new XmlSerializer(typeof(XMLread.ArrayOfQuiz[]));
+            XmlSerializer serializer = new XmlSerializer(typeof(XMLread));
             string username = Environment.UserName;
             using (StringReader reader = new StringReader($@"C:\Users\{username}\Downloads\QuizCards.xml"))
             {
-                var quizDB = (XMLread.ArrayOfQuiz[])serializer.Deserialize(reader);
+                var quizDB = (XMLread)serializer.Deserialize(reader);
                 return quizDB;
             }
         }
