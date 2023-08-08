@@ -1,4 +1,5 @@
 ﻿using System.Xml.Serialization;
+using static System.Net.Mime.MediaTypeNames;
 
 
 namespace P6_QuizMaker
@@ -19,15 +20,17 @@ namespace P6_QuizMaker
             }
         }
 
-        public static void ImportFile()
+        public static List<Quiz> ImportFile()
         {
-            XmlSerializer serializer = new XmlSerializer(typeof(ArrayOfQuiz));
-            using (StringReader reader = new StringReader(xml))
+            XmlSerializer serializer = new XmlSerializer(typeof(XMLread.ArrayOfQuiz[]));
+            string username = Environment.UserName;
+            using (StringReader reader = new StringReader($@"C:\Users\{username}\Downloads\QuizCards.xml"))
             {
-                var test = (ArrayOfQuiz)serializer.Deserialize(reader);
+                var quizDB = (XMLread.ArrayOfQuiz[])serializer.Deserialize(reader);
+                return quizDB;
             }
         }
-
+        
 
     }
 }
