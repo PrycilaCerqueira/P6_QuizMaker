@@ -31,7 +31,7 @@ namespace P6_QuizMaker
             string filePath = $@"C:\Users\{username}\Downloads\QuizCards.xml";
             
             XmlSerializer serializer = new XmlSerializer(typeof(List<Quiz>));
-            using (FileStream reader = new FileStream(filePath, FileMode.Open))
+            using (FileStream reader = new FileStream(filePath, FileMode.Open, FileAccess.Read))
             {
                 var quizDB = (List<Quiz>)serializer.Deserialize(reader);
                 return quizDB;
