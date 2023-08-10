@@ -1,5 +1,6 @@
 ﻿namespace P6_QuizMaker
 {
+    [Serializable]
     public class Quiz
     {
         public string Topic { get; set; }

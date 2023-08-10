@@ -1,4 +1,6 @@
-﻿using System.Xml.Serialization;
+﻿using System.Xml;
+using System.IO;
+using System.Xml.Serialization;
 using static System.Net.Mime.MediaTypeNames;
 
 
@@ -12,9 +14,11 @@ namespace P6_QuizMaker
         /// <param name="quizDB"></param>
         public static void ExportFile(List<Quiz> quizDB)
         {
-            XmlSerializer serializer = new XmlSerializer(typeof(List<Quiz>));
             string username = Environment.UserName;
-            using (StreamWriter writer = new StreamWriter($@"C:\Users\{username}\Downloads\QuizCards.xml"))
+            string filePath = $@"C:\Users\{username}\Downloads\QuizCards.xml";
+
+            XmlSerializer serializer = new XmlSerializer(typeof(List<Quiz>));
+            using (StreamWriter writer = new StreamWriter(filePath))
             {
                 serializer.Serialize(writer, quizDB);
             }
@@ -22,15 +26,20 @@ namespace P6_QuizMaker
 
         public static List<Quiz> ImportFile()
         {
-            XmlSerializer serializer = new XmlSerializer(typeof(XMLread));
+
             string username = Environment.UserName;
-            using (StringReader reader = new StringReader($@"C:\Users\{username}\Downloads\QuizCards.xml"))
+            string filePath = $@"C:\Users\{username}\Downloads\QuizCards.xml";
+            
+            XmlSerializer serializer = new XmlSerializer(typeof(List<Quiz>));
+            using (FileStream reader = new FileStream(filePath, FileMode.Open))
             {
-                var quizDB = (XMLread)serializer.Deserialize(reader);
+                var quizDB = (List<Quiz>)serializer.Deserialize(reader);
                 return quizDB;
             }
+            
         }
         
+
 
     }
 }
