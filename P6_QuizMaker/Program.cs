@@ -4,7 +4,7 @@
     {
         static void Main(string[] args)
         {
-            //TODO: BONUS: Update stored the Q/A in a file and restore them.
+            //TODO: shuffledQuiz not working with the new XML.LoadDB()
 
             bool continuePlay;
             Random rnd = new Random();
@@ -17,12 +17,7 @@
                 UI.PrintGameInstructions(trivia.Description);
 
                 //Quiz DB Creation
-
-                List<Quiz> quizDB;
-                //quizDB.AddRange(UI.GetQuizCards());
-                //XML.ExportFile(quizDB);
-                //quizDB = XML.ImportFile();
-                quizDB = XML.LoadDB();
+                List<Quiz> quizDB = XML.LoadDB();
 
                 //Player Info
                 UI.PrintGameHeadline(trivia.Title);

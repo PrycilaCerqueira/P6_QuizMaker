@@ -35,19 +35,6 @@ namespace P6_QuizMaker
             
         }
 
-        public static bool dbFileExist(string filePath)
-        {
-            
-            if (File.Exists(filePath))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
         public static List<Quiz> LoadDB()
         {
             List<Quiz> quizDB;
@@ -55,7 +42,7 @@ namespace P6_QuizMaker
             string username = Environment.UserName;
             string filePath = $@"C:\Users\{username}\Downloads\QuizCards.xml";
 
-            if (dbFileExist(filePath) == true)
+            if (File.Exists(filePath))
             {
                 quizDB = ImportFile(filePath);
                 quizDB.AddRange(UI.GetQuizCards());
