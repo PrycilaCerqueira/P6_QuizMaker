@@ -17,8 +17,12 @@
                 UI.PrintGameInstructions(trivia.Description);
 
                 //Quiz DB Creation
-                //List<Quiz> quizDB = UI.GetQuizCards();
-                List<Quiz> quizDB = XML.ImportFile();
+
+                List<Quiz> quizDB;
+                //quizDB.AddRange(UI.GetQuizCards());
+                //XML.ExportFile(quizDB);
+                //quizDB = XML.ImportFile();
+                quizDB = XML.LoadDB();
 
                 //Player Info
                 UI.PrintGameHeadline(trivia.Title);
