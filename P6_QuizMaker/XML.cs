@@ -34,7 +34,7 @@ namespace P6_QuizMaker
         
             
         }
-
+        
         public static List<Quiz> LoadDB()
         {
             List<Quiz> quizDB;
